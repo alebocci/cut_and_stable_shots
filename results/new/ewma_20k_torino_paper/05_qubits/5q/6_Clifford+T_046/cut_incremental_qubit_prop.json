@@ -1,0 +1,1227 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nh q[4];\ncx q[0],q[3];\nh q[1];\ncx q[3],q[1];\nz q[3];\ncx q[1],q[3];\nx q[3];\ncx q[1],q[4];\nz q[4];\ncx q[3],q[4];\nx q[3];\ncx q[1],q[3];\nx q[4];\ncx q[0],q[3];\nt q[1];\ncx q[0],q[2];\nz q[1];\ncx q[0],q[2];\nt q[1];\ncx q[3],q[4];\nx q[0];\ncx q[0],q[2];\ns q[3];\ncx q[3],q[1];\nt q[0];\ncx q[0],q[2];\nt q[4];\ncx q[4],q[3];\nt q[0];\ncx q[3],q[4];\ns q[1];\ncx q[2],q[0];\nz q[3];\ncx q[4],q[3];\ns q[0];\ncx q[4],q[3];\nz q[4];\ncx q[2],q[4];\nt q[4];\ncx q[3],q[1];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "cc_incremental_qubit_prop",
+    "perf_exp_val": -0.9999999999999996,
+    "shots_allocation": "qubit_driven_proportional_incremental",
+    "incremental_batch_shots": 100,
+    "incremental_threshold": 0.01,
+    "incremental_offset": 2,
+    "incremental_stability_k": 3,
+    "incremental_stopping_criterion": "delta",
+    "incremental_distance_metric": "tvd",
+    "incremental_window_size": 2,
+    "incremental_ewma_alpha": null,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('5aab992f60e49d575b7557fd1f53648e', 'ZIIII')": -0.6893552196998202
+      }
+    }
+  },
+  "times": {
+    "time_total": 649.4596387641504,
+    "time_cutting": 0.00013451697304844856,
+    "time_execution": 649.4578477125615,
+    "time_sew": 0.001650333870202303
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 21,
+      "num_gates": 40,
+      "2q_depth": 14,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "t": 6,
+        "z": 5,
+        "x": 4,
+        "s": 3,
+        "h": 2
+      }
+    },
+    "cut_info": {
+      "num_fragments": 2,
+      "fragments_qubits": [
+        4,
+        3
+      ],
+      "num_variations": 25,
+      "variations": [
+        9,
+        16
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 2,
+      "num_variants": 32,
+      "variations_per_fragment": [
+        9,
+        16
+      ],
+      "total_allocated_shots": 20000,
+      "total_executed_shots": 20000,
+      "min_allocated_shots_per_variant": 536,
+      "max_allocated_shots_per_variant": 714,
+      "min_executed_shots_per_variant": 536,
+      "max_executed_shots_per_variant": 714,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "IIII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "ZIII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "ZZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "XIII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "XZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "YIII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "YZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "IXII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "ZXII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "XXII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 5,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "YXII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "IYII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "ZYII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 7,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "XYII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 8,
+          "variant_key": "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')",
+          "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+          "observable": "YYII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 9,
+          "variant_key": "('b3414ea7cc375304a5cbf438352f7297', 'ZII')",
+          "fragment_hash": "b3414ea7cc375304a5cbf438352f7297",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 10,
+          "variant_key": "('a9fe054474dcb755a91fef1d221435fb', 'ZII')",
+          "fragment_hash": "a9fe054474dcb755a91fef1d221435fb",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 11,
+          "variant_key": "('5bac579a9778d9f12266e452541e3fbd', 'ZII')",
+          "fragment_hash": "5bac579a9778d9f12266e452541e3fbd",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 12,
+          "variant_key": "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')",
+          "fragment_hash": "ddcd98145858d1721cc91bb3cb9ecb8f",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 13,
+          "variant_key": "('6133683eda5f0c30d938cf6633f74828', 'ZII')",
+          "fragment_hash": "6133683eda5f0c30d938cf6633f74828",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 14,
+          "variant_key": "('f82fa6061c3d9245309047693f40d7aa', 'ZII')",
+          "fragment_hash": "f82fa6061c3d9245309047693f40d7aa",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 15,
+          "variant_key": "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')",
+          "fragment_hash": "ebc583b3d1baf44e5f4e0b62e23a069f",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 16,
+          "variant_key": "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')",
+          "fragment_hash": "ec436b3a74cc364b0a2968e37bcda469",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 17,
+          "variant_key": "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')",
+          "fragment_hash": "1d7f1bd43391d41939bfadd034bd219c",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 18,
+          "variant_key": "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')",
+          "fragment_hash": "d9c83f9636502ac264c9ec87870e0f23",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 19,
+          "variant_key": "('fa75065a4078a49470eeb426d067ff78', 'ZII')",
+          "fragment_hash": "fa75065a4078a49470eeb426d067ff78",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 20,
+          "variant_key": "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')",
+          "fragment_hash": "3b7d2829fba66beee2b805f1afd25c8b",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 21,
+          "variant_key": "('350ec7d881ebd118c6b80df106935bf1', 'ZII')",
+          "fragment_hash": "350ec7d881ebd118c6b80df106935bf1",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 22,
+          "variant_key": "('a49b2521955f928b62861c753bcda39b', 'ZII')",
+          "fragment_hash": "a49b2521955f928b62861c753bcda39b",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 23,
+          "variant_key": "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')",
+          "fragment_hash": "9079eb34c8110dc0d15136ad11ce498c",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 24,
+          "variant_key": "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')",
+          "fragment_hash": "14ed2d6a9e54274af1c114883f2122bc",
+          "observable": "ZII",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "b9b881933c71c09c4da9ff07eed9e460",
+        "observables": [
+          "IIII",
+          "XIII",
+          "YIII",
+          "IXII",
+          "XXII",
+          "YXII",
+          "IYII",
+          "XYII",
+          "YYII"
+        ],
+        "fragment_stats": {
+          "qubits": 4,
+          "depth": 19,
+          "num_gates": 28,
+          "2q_depth": 14,
+          "num_1q_gates": 14,
+          "num_2q_gates": 14,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 14,
+            "z": 4,
+            "x": 3,
+            "t": 3,
+            "h": 2,
+            "s": 2
+          }
+        }
+      },
+      {
+        "fragment_hash": "b3414ea7cc375304a5cbf438352f7297",
+        "observables": [
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII",
+          "ZII"
+        ],
+        "fragment_stats": {
+          "qubits": 3,
+          "depth": 11,
+          "num_gates": 14,
+          "2q_depth": 6,
+          "num_1q_gates": 8,
+          "num_2q_gates": 6,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 6,
+            "t": 3,
+            "id": 2,
+            "x": 1,
+            "s": 1,
+            "z": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": {
+        "1101": 37,
+        "0001": 24,
+        "1110": 2,
+        "0101": 31,
+        "0100": 143,
+        "0010": 1,
+        "0000": 125,
+        "1001": 31,
+        "1000": 149,
+        "1100": 159,
+        "1010": 4,
+        "0111": 1,
+        "1111": 2,
+        "1011": 1,
+        "0110": 4
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')": {
+        "1010": 5,
+        "0110": 6,
+        "1101": 19,
+        "0001": 27,
+        "0100": 135,
+        "1110": 4,
+        "0101": 31,
+        "0010": 4,
+        "0000": 149,
+        "1001": 36,
+        "1000": 160,
+        "1100": 135,
+        "1011": 1,
+        "1111": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')": {
+        "1101": 38,
+        "0111": 2,
+        "1011": 1,
+        "0001": 41,
+        "0100": 150,
+        "0101": 31,
+        "1010": 6,
+        "1000": 137,
+        "1001": 27,
+        "1100": 132,
+        "0010": 6,
+        "0000": 130,
+        "0011": 3,
+        "1110": 3,
+        "0110": 7
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')": {
+        "1010": 5,
+        "0010": 5,
+        "0000": 143,
+        "1101": 38,
+        "0100": 136,
+        "0001": 35,
+        "0101": 25,
+        "1001": 18,
+        "1100": 135,
+        "1000": 170,
+        "1110": 3,
+        "0111": 1
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": {
+        "0011": 4,
+        "1010": 1,
+        "0000": 95,
+        "1101": 76,
+        "0101": 100,
+        "0001": 86,
+        "1111": 4,
+        "0100": 86,
+        "1001": 82,
+        "1100": 73,
+        "1000": 93,
+        "0111": 4,
+        "1011": 6,
+        "1110": 2,
+        "0110": 1,
+        "0010": 1
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')": {
+        "1101": 95,
+        "0100": 78,
+        "0000": 77,
+        "0101": 84,
+        "1001": 98,
+        "1000": 103,
+        "1100": 80,
+        "0001": 77,
+        "1011": 5,
+        "1110": 2,
+        "1010": 3,
+        "0010": 2,
+        "0110": 3,
+        "0111": 2,
+        "1111": 3,
+        "0011": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": {
+        "0101": 80,
+        "0001": 94,
+        "0000": 110,
+        "0100": 80,
+        "1101": 97,
+        "1100": 84,
+        "1001": 75,
+        "1000": 78,
+        "0010": 2,
+        "0011": 3,
+        "1011": 2,
+        "0111": 2,
+        "1111": 3,
+        "0110": 2,
+        "1110": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')": {
+        "0001": 112,
+        "0100": 98,
+        "1011": 3,
+        "0111": 4,
+        "0000": 82,
+        "1101": 83,
+        "0101": 80,
+        "1001": 78,
+        "1000": 80,
+        "1100": 86,
+        "0110": 3,
+        "1010": 1,
+        "0011": 1,
+        "0010": 2,
+        "1110": 1
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": {
+        "0001": 18,
+        "1111": 20,
+        "1101": 15,
+        "0100": 83,
+        "0000": 53,
+        "0010": 78,
+        "1011": 17,
+        "0111": 12,
+        "0011": 19,
+        "1010": 75,
+        "1110": 74,
+        "1001": 17,
+        "0101": 17,
+        "0110": 75,
+        "1000": 77,
+        "1100": 64
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')": {
+        "0010": 70,
+        "1101": 11,
+        "0101": 16,
+        "1001": 16,
+        "1100": 72,
+        "0110": 75,
+        "1000": 72,
+        "0100": 73,
+        "1111": 13,
+        "0001": 21,
+        "0000": 86,
+        "1110": 74,
+        "1011": 13,
+        "0011": 15,
+        "0111": 11,
+        "1010": 76
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": {
+        "1010": 39,
+        "0100": 43,
+        "1110": 45,
+        "0111": 45,
+        "0011": 39,
+        "1011": 39,
+        "0000": 52,
+        "0010": 45,
+        "1100": 40,
+        "1101": 46,
+        "1000": 47,
+        "0110": 49,
+        "0001": 46,
+        "1111": 41,
+        "1001": 55,
+        "0101": 43
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": {
+        "1010": 28,
+        "0010": 49,
+        "1111": 42,
+        "0001": 41,
+        "0011": 42,
+        "0111": 58,
+        "1011": 38,
+        "1000": 50,
+        "0110": 39,
+        "1101": 53,
+        "1110": 48,
+        "1100": 41,
+        "0101": 37,
+        "1001": 43,
+        "0000": 54,
+        "0100": 51
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": {
+        "0011": 15,
+        "0111": 16,
+        "1010": 79,
+        "0000": 81,
+        "0010": 64,
+        "0100": 81,
+        "1100": 75,
+        "0001": 24,
+        "1111": 12,
+        "1110": 74,
+        "1001": 15,
+        "0101": 14,
+        "1101": 14,
+        "1000": 68,
+        "0110": 69,
+        "1011": 13
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')": {
+        "1011": 15,
+        "0000": 84,
+        "0010": 82,
+        "1100": 67,
+        "0100": 81,
+        "1010": 68,
+        "1000": 70,
+        "0110": 72,
+        "1101": 18,
+        "1110": 62,
+        "1001": 18,
+        "0101": 16,
+        "0011": 9,
+        "0111": 16,
+        "1111": 18,
+        "0001": 18
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": {
+        "0001": 27,
+        "1011": 49,
+        "1101": 50,
+        "1111": 40,
+        "1010": 43,
+        "1100": 48,
+        "0110": 44,
+        "1000": 39,
+        "0011": 54,
+        "0111": 49,
+        "0010": 48,
+        "0000": 56,
+        "1001": 36,
+        "0101": 46,
+        "1110": 47,
+        "0100": 38
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": {
+        "1101": 34,
+        "1110": 54,
+        "1010": 36,
+        "0001": 52,
+        "1111": 51,
+        "0011": 37,
+        "0111": 44,
+        "1011": 47,
+        "0000": 53,
+        "0010": 36,
+        "1100": 35,
+        "0101": 58,
+        "1001": 37,
+        "0110": 57,
+        "1000": 42,
+        "0100": 41
+      },
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": {
+        "011": 11,
+        "101": 19,
+        "000": 58,
+        "100": 5,
+        "001": 442,
+        "010": 1
+      },
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": {
+        "111": 11,
+        "100": 83,
+        "101": 415,
+        "001": 23,
+        "000": 3,
+        "110": 1
+      },
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": {
+        "111": 5,
+        "011": 7,
+        "100": 42,
+        "001": 223,
+        "101": 215,
+        "000": 42,
+        "110": 1,
+        "010": 1
+      },
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": {
+        "111": 7,
+        "000": 43,
+        "001": 213,
+        "100": 40,
+        "101": 227,
+        "110": 2,
+        "011": 4
+      },
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": {
+        "100": 29,
+        "001": 91,
+        "010": 11,
+        "000": 402,
+        "101": 1,
+        "011": 2
+      },
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": {
+        "111": 1,
+        "110": 9,
+        "101": 78,
+        "000": 24,
+        "100": 421,
+        "001": 3
+      },
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": {
+        "111": 1,
+        "101": 37,
+        "000": 217,
+        "100": 229,
+        "001": 42,
+        "010": 6,
+        "110": 3,
+        "011": 1
+      },
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": {
+        "110": 4,
+        "001": 37,
+        "101": 43,
+        "100": 241,
+        "010": 10,
+        "000": 200,
+        "111": 1
+      },
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": {
+        "101": 15,
+        "100": 13,
+        "111": 1,
+        "001": 247,
+        "000": 251,
+        "011": 3,
+        "010": 6
+      },
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": {
+        "001": 18,
+        "111": 4,
+        "000": 19,
+        "100": 244,
+        "101": 246,
+        "110": 5
+      },
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": {
+        "110": 4,
+        "001": 129,
+        "100": 123,
+        "101": 130,
+        "111": 6,
+        "011": 2,
+        "010": 3,
+        "000": 139
+      },
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": {
+        "011": 1,
+        "110": 5,
+        "001": 129,
+        "101": 139,
+        "100": 118,
+        "000": 142,
+        "010": 1,
+        "111": 1
+      },
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": {
+        "101": 15,
+        "100": 9,
+        "001": 235,
+        "000": 266,
+        "011": 4,
+        "010": 7
+      },
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": {
+        "001": 12,
+        "110": 11,
+        "111": 9,
+        "000": 9,
+        "100": 231,
+        "101": 264
+      },
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": {
+        "101": 117,
+        "010": 8,
+        "000": 147,
+        "100": 134,
+        "001": 122,
+        "110": 3,
+        "011": 1,
+        "111": 4
+      },
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": {
+        "110": 3,
+        "011": 4,
+        "100": 117,
+        "101": 144,
+        "001": 133,
+        "010": 7,
+        "000": 125,
+        "111": 3
+      }
+    },
+    "variant_exp_values": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": [
+        0.9999999999999999,
+        0.6750700280112045,
+        0.9215686274509804,
+        0.6386554621848739
+      ],
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": [
+        -0.014005602240896364,
+        -0.01960784313725492
+      ],
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": [
+        0.002801120448179271,
+        -0.008403361344537815
+      ],
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": [
+        -0.03641456582633058,
+        -0.00560224089635851
+      ],
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": -0.030812324929971983,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": 0.053221288515406154,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": [
+        0.04201680672268904,
+        0.00840336134453782
+      ],
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": 0.04481792717086835,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": -0.019607843137254895,
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": -0.7611940298507462,
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": -0.6753731343283582,
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": -0.6791044776119401,
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": -0.6828358208955224,
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": 0.6492537313432836,
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": 0.6940298507462687,
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": 0.6977611940298506,
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": 0.6977611940298507,
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": 0.007462686567164156,
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": 0.0,
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": 0.003731343283582045,
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": -0.007462686567164145,
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": 0.05223880597014925,
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": -0.06343283582089548,
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": 0.08955223880597014,
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": -0.059701492537313425
+    },
+    "variant_shots_budget": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": 714,
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": 536,
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": 536,
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": 536,
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": 536,
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": 536,
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": 536,
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": 536,
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": 536,
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": 536,
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": 536,
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": 536,
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": 536,
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": 536,
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": 536,
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": 536,
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": 536
+    },
+    "variant_shots_executed": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": 714,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": 714,
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": 536,
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": 536,
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": 536,
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": 536,
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": 536,
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": 536,
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": 536,
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": 536,
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": 536,
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": 536,
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": 536,
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": 536,
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": 536,
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": 536,
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": 536,
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": 536
+    },
+    "variant_iterations": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": 8,
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": 8,
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": 6,
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": 6,
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": 6,
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": 6,
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": 6,
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": 6,
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": 6,
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": 6,
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": 6,
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": 6,
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": 6,
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": 6,
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": 6,
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": 6,
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": 6,
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": 6
+    },
+    "variant_stopping_info": {
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IIII')": {
+        "criterion": "delta",
+        "distance": 0.019887955182072852,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZIII')": {
+        "criterion": "delta",
+        "distance": 0.015420168067226896,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.0207563025210084,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZZII')": {
+        "criterion": "delta",
+        "distance": 0.01655462184873951,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XIII')": {
+        "criterion": "delta",
+        "distance": 0.017212885154061625,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XZII')": {
+        "criterion": "delta",
+        "distance": 0.02207282913165267,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YIII')": {
+        "criterion": "delta",
+        "distance": 0.01654061624649859,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YZII')": {
+        "criterion": "delta",
+        "distance": 0.022815126050420187,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IXII')": {
+        "criterion": "delta",
+        "distance": 0.02320728291316527,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZXII')": {
+        "criterion": "delta",
+        "distance": 0.02270308123249299,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XXII')": {
+        "criterion": "delta",
+        "distance": 0.028837535014005614,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YXII')": {
+        "criterion": "delta",
+        "distance": 0.02427170868347338,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'IYII')": {
+        "criterion": "delta",
+        "distance": 0.03260504201680674,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'ZYII')": {
+        "criterion": "delta",
+        "distance": 0.028991596638655467,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'XYII')": {
+        "criterion": "delta",
+        "distance": 0.02469187675070029,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b9b881933c71c09c4da9ff07eed9e460', 'YYII')": {
+        "criterion": "delta",
+        "distance": 0.02359943977591037,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b3414ea7cc375304a5cbf438352f7297', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.014402985074626841,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('a9fe054474dcb755a91fef1d221435fb', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.028246268656716415,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('5bac579a9778d9f12266e452541e3fbd', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.03373134328358208,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('ddcd98145858d1721cc91bb3cb9ecb8f', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.01705223880597012,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('6133683eda5f0c30d938cf6633f74828', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.019253731343283596,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('f82fa6061c3d9245309047693f40d7aa', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.01272388059701489,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('ebc583b3d1baf44e5f4e0b62e23a069f', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.012388059701492536,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('ec436b3a74cc364b0a2968e37bcda469', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.020746268656716412,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('1d7f1bd43391d41939bfadd034bd219c', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.011753731343283582,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('d9c83f9636502ac264c9ec87870e0f23', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.017947761194029837,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('fa75065a4078a49470eeb426d067ff78', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.013805970149253739,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('3b7d2829fba66beee2b805f1afd25c8b', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.014925373134328368,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('350ec7d881ebd118c6b80df106935bf1', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.02861940298507464,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('a49b2521955f928b62861c753bcda39b', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.013059701492537316,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('9079eb34c8110dc0d15136ad11ce498c', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.019850746268656714,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('14ed2d6a9e54274af1c114883f2122bc', 'ZII')": {
+        "criterion": "delta",
+        "distance": 0.026380597014925344,
+        "threshold": 0.01,
+        "offset": 2
+      }
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 100,
+      "threshold": 0.01,
+      "offset": 2,
+      "stability_k": 3,
+      "stopping_criterion": "delta",
+      "distance_metric": "tvd",
+      "window_size": 2,
+      "ewma_alpha": null
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('5aab992f60e49d575b7557fd1f53648e', 'ZIIII')": 0.3106447803001794
+      }
+    }
+  },
+  "shots_executed": 20000,
+  "distance_to_noisy_vanilla": 0.024055219699820052
+}

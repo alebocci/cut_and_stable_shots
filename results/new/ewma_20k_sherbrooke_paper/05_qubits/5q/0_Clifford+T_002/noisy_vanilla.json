@@ -1,0 +1,74 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nz q[1];\ncx q[3],q[4];\nx q[3];\ncx q[2],q[1];\nz q[1];\ncx q[0],q[3];\nt q[4];\ncx q[2],q[1];\nx q[1];\ncx q[3],q[0];\nz q[2];\ncx q[4],q[0];\nx q[2];\ncx q[3],q[0];\ns q[2];\ncx q[2],q[1];\nt q[2];\ncx q[1],q[4];\nt q[4];\ncx q[2],q[4];\nh q[0];\ncx q[1],q[2];\ns q[3];\ncx q[2],q[1];\nz q[1];\ncx q[1],q[2];\nh q[0];\ncx q[0],q[3];\nt q[4];\ncx q[1],q[2];\nz q[3];\ncx q[4],q[0];\nx q[1];\ncx q[3],q[0];\nx q[2];\ncx q[4],q[0];\nz q[2];\ncx q[2],q[1];\nz q[2];\ncx q[2],q[1];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_sherbrooke"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": -0.9999999999999996
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": -0.9795999999999999
+      }
+    }
+  },
+  "times": {
+    "time_total": 2.7843357641249895,
+    "time_execution": 2.7843357641249895
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 21,
+      "num_gates": 40,
+      "2q_depth": 12,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "z": 7,
+        "x": 5,
+        "t": 4,
+        "s": 2,
+        "h": 2
+      }
+    },
+    "counts": {
+      "01010": 1,
+      "01011": 12,
+      "11001": 18290,
+      "10000": 15,
+      "11011": 468,
+      "01000": 6,
+      "11101": 400,
+      "11010": 4,
+      "01001": 363,
+      "10001": 217,
+      "10011": 4,
+      "01101": 24,
+      "11000": 176,
+      "11111": 10,
+      "11100": 1,
+      "10101": 6,
+      "00001": 2,
+      "10010": 1
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": 0.02039999999999964
+      }
+    }
+  },
+  "shots_executed": 20000,
+  "distance_to_noisy_vanilla": 0.9795999999999999
+}

@@ -1,0 +1,83 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nh q[4];\ncx q[3],q[4];\ns q[3];\ncx q[4],q[3];\nt q[1];\ncx q[2],q[4];\nx q[4];\ncx q[1],q[0];\ns q[1];\ncx q[3],q[4];\nt q[2];\ncx q[3],q[4];\nx q[1];\ncx q[1],q[3];\nz q[3];\ncx q[0],q[1];\nh q[3];\ncx q[1],q[2];\nz q[4];\ncx q[3],q[4];\nz q[4];\ncx q[2],q[1];\ns q[2];\ncx q[2],q[1];\nh q[4];\ncx q[2],q[1];\ns q[2];\ncx q[0],q[1];\nz q[3];\ncx q[1],q[0];\nz q[1];\ncx q[1],q[3];\nt q[0];\ncx q[0],q[2];\ns q[1];\ncx q[3],q[4];\nz q[4];\ncx q[3],q[4];\ns q[1];\ncx q[4],q[3];",
+    "observable": "ZIIII",
+    "shots": 30000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": 0.9999999999999996
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('f6cd05ce7e886ae56b8b473ab6d005ee', 'ZIIII')": 0.6678666666666668
+      }
+    }
+  },
+  "times": {
+    "time_total": 2.677097455598414,
+    "time_execution": 2.677097455598414
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 23,
+      "num_gates": 40,
+      "2q_depth": 17,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "s": 6,
+        "z": 6,
+        "h": 3,
+        "t": 3,
+        "x": 2
+      }
+    },
+    "counts": {
+      "01011": 1,
+      "00011": 1,
+      "01010": 20,
+      "10110": 3,
+      "00000": 12,
+      "01111": 61,
+      "11011": 3,
+      "10000": 7,
+      "01101": 2273,
+      "01100": 11478,
+      "00110": 6,
+      "01000": 539,
+      "00101": 29,
+      "11010": 18,
+      "01001": 137,
+      "11101": 2271,
+      "00001": 1,
+      "10111": 1,
+      "11100": 11440,
+      "10101": 37,
+      "10100": 199,
+      "11001": 118,
+      "11111": 49,
+      "11000": 594,
+      "00100": 171,
+      "01110": 269,
+      "11110": 262
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('f6cd05ce7e886ae56b8b473ab6d005ee', 'ZIIII')": 0.3321333333333327
+      }
+    }
+  },
+  "shots_executed": 30000,
+  "distance_to_noisy_vanilla": 0.6678666666666668
+}

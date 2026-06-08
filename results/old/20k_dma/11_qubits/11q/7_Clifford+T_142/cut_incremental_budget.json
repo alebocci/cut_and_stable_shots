@@ -1,0 +1,514 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[11];\nx q[0];\ncx q[8],q[5];\nt q[9];\ncx q[1],q[3];\nh q[3];\ncx q[5],q[9];\nx q[3];\ncx q[0],q[5];\ns q[3];\ncx q[7],q[6];\nx q[3];\ncx q[8],q[1];\nh q[0];\ncx q[0],q[3];\nz q[8];\ncx q[8],q[3];\nh q[3];\ncx q[1],q[3];\nt q[2];\ncx q[1],q[0];\ns q[9];\ncx q[5],q[9];\nh q[3];\ncx q[2],q[1];\nx q[8];\ncx q[4],q[2];\nh q[0];\ncx q[6],q[1];\nt q[10];\ncx q[4],q[10];\nt q[7];\ncx q[5],q[0];\ns q[1];\ncx q[1],q[9];\nh q[4];\ncx q[4],q[3];\nh q[5];\ncx q[0],q[5];\nx q[7];\ncx q[2],q[1];",
+    "observable": "ZIIIIIIIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "cc_incremental_budget",
+    "perf_exp_val": 0.0,
+    "shots_allocation": "equal_split_budget_incremental",
+    "incremental_batch_shots": 50,
+    "incremental_threshold": 0.03,
+    "incremental_offset": 2,
+    "incremental_stability_k": 3,
+    "incremental_stopping_criterion": "dma",
+    "incremental_distance_metric": "tvd",
+    "incremental_window_size": 3,
+    "incremental_ewma_alpha": null,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('1c2e2762a2da8e7e3b7b8a479bea14b4', 'ZIIIIIIIIII')": 0.12000000000000001
+      }
+    }
+  },
+  "times": {
+    "time_total": 126.75609004299622,
+    "time_cutting": 5.520298145711422e-05,
+    "time_execution": 126.75378276000265,
+    "time_sew": 0.002240779926069081
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 11,
+      "depth": 15,
+      "num_gates": 40,
+      "2q_depth": 11,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "h": 7,
+        "x": 5,
+        "t": 4,
+        "s": 3,
+        "z": 1
+      }
+    },
+    "cut_info": {
+      "num_fragments": 2,
+      "fragments_qubits": [
+        10,
+        2
+      ],
+      "num_variations": 7,
+      "variations": [
+        4,
+        3
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 2,
+      "num_variants": 8,
+      "variations_per_fragment": [
+        4,
+        3
+      ],
+      "total_allocated_shots": 20000,
+      "total_executed_shots": 2800,
+      "min_allocated_shots_per_variant": 2500,
+      "max_allocated_shots_per_variant": 2500,
+      "min_executed_shots_per_variant": 350,
+      "max_executed_shots_per_variant": 350,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')",
+          "fragment_hash": "c51d10b0624e7af1acc1db62384d68d9",
+          "observable": "ZIIIIIIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')",
+          "fragment_hash": "6ebd41edc237d1739c40eb9b468c23fa",
+          "observable": "ZIIIIIIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')",
+          "fragment_hash": "4852dc0a3feb174c1b1c640b324bd5e0",
+          "observable": "ZIIIIIIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')",
+          "fragment_hash": "ccf2f1acf75289c810bb6db554fbb87c",
+          "observable": "ZIIIIIIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('b7044811a1db684cf86417dbd99a900d', 'II')",
+          "fragment_hash": "b7044811a1db684cf86417dbd99a900d",
+          "observable": "II",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('b7044811a1db684cf86417dbd99a900d', 'IZ')",
+          "fragment_hash": "b7044811a1db684cf86417dbd99a900d",
+          "observable": "IZ",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 5,
+          "variant_key": "('b7044811a1db684cf86417dbd99a900d', 'IX')",
+          "fragment_hash": "b7044811a1db684cf86417dbd99a900d",
+          "observable": "IX",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('b7044811a1db684cf86417dbd99a900d', 'IY')",
+          "fragment_hash": "b7044811a1db684cf86417dbd99a900d",
+          "observable": "IY",
+          "allocated_shots": 2500,
+          "executed_shots": 350,
+          "iterations": 7
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "c51d10b0624e7af1acc1db62384d68d9",
+        "observables": [
+          "ZIIIIIIIII",
+          "ZIIIIIIIII",
+          "ZIIIIIIIII",
+          "ZIIIIIIIII"
+        ],
+        "fragment_stats": {
+          "qubits": 10,
+          "depth": 15,
+          "num_gates": 38,
+          "2q_depth": 11,
+          "num_1q_gates": 19,
+          "num_2q_gates": 19,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 19,
+            "h": 7,
+            "x": 4,
+            "t": 3,
+            "s": 3,
+            "id": 1,
+            "z": 1
+          }
+        }
+      },
+      {
+        "fragment_hash": "b7044811a1db684cf86417dbd99a900d",
+        "observables": [
+          "II",
+          "IX",
+          "IY"
+        ],
+        "fragment_stats": {
+          "qubits": 2,
+          "depth": 3,
+          "num_gates": 3,
+          "2q_depth": 1,
+          "num_1q_gates": 2,
+          "num_2q_gates": 1,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 1,
+            "t": 1,
+            "x": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": {
+        "0100001001": 7,
+        "0000001011": 21,
+        "1000001011": 7,
+        "1100001111": 7,
+        "0100111011": 7,
+        "0100001111": 7,
+        "0000101010": 35,
+        "0100101111": 21,
+        "0100001110": 42,
+        "0000101111": 7,
+        "0100001010": 28,
+        "0000001111": 14,
+        "0100001011": 21,
+        "0100101011": 7,
+        "0100011111": 7,
+        "0000001010": 21,
+        "0100101110": 28,
+        "0000101110": 7,
+        "0100101010": 28,
+        "0000001110": 7,
+        "0000101011": 21
+      },
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": {
+        "1101010111": 7,
+        "0101010001": 7,
+        "0001000011": 7,
+        "0001010011": 14,
+        "1001010011": 7,
+        "0001100010": 14,
+        "0101011011": 7,
+        "0101110011": 7,
+        "0100110010": 7,
+        "0101100011": 7,
+        "0001110010": 21,
+        "0101110111": 21,
+        "0001110110": 7,
+        "0001110111": 7,
+        "0001110011": 21,
+        "0101010010": 28,
+        "0101010111": 14,
+        "0001010111": 14,
+        "0101110010": 21,
+        "0001010010": 21,
+        "0001010110": 7,
+        "0100001110": 7,
+        "0101010110": 35,
+        "0101010011": 14,
+        "0101110110": 28
+      },
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": {
+        "0001110111": 7,
+        "0000101110": 7,
+        "0100101010": 7,
+        "0100101110": 14,
+        "1101010111": 7,
+        "0001101110": 7,
+        "0001110010": 42,
+        "0100001010": 7,
+        "0001100010": 7,
+        "0100101011": 14,
+        "0101010010": 7,
+        "0101010011": 21,
+        "0101101011": 7,
+        "0001010011": 14,
+        "0000001011": 14,
+        "0001010010": 7,
+        "0100101111": 14,
+        "0001110110": 14,
+        "0000101010": 7,
+        "0101110010": 7,
+        "0100001111": 14,
+        "0001010110": 35,
+        "0000101011": 7,
+        "0101110011": 7,
+        "0000101111": 21,
+        "0101100010": 7,
+        "0001110011": 7,
+        "1000101010": 7,
+        "0000111010": 7,
+        "0100100110": 7
+      },
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": {
+        "0001110111": 7,
+        "0000101110": 7,
+        "0100101010": 7,
+        "0100101110": 14,
+        "1101010111": 7,
+        "0001101110": 7,
+        "0001110010": 42,
+        "0100001010": 7,
+        "0001100010": 7,
+        "0100101011": 14,
+        "0101010010": 7,
+        "0101010011": 21,
+        "0101101011": 7,
+        "0001010011": 14,
+        "0000001011": 14,
+        "0001010010": 7,
+        "0100101111": 14,
+        "0001110110": 14,
+        "0000101010": 7,
+        "0101110010": 7,
+        "0100001111": 14,
+        "0001010110": 35,
+        "0000101011": 7,
+        "0101110011": 7,
+        "0000101111": 21,
+        "0101100010": 7,
+        "0001110011": 7,
+        "1000101010": 7,
+        "0000111010": 7,
+        "0100100110": 7
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": {
+        "11": 7,
+        "00": 56,
+        "01": 287
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IZ')": {
+        "11": 7,
+        "00": 56,
+        "01": 287
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": {
+        "11": 133,
+        "00": 21,
+        "10": 35,
+        "01": 161
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": {
+        "11": 133,
+        "00": 21,
+        "10": 35,
+        "01": 161
+      }
+    },
+    "variant_exp_values": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": 0.12,
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": 0.12,
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": 0.12,
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": 0.12,
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": [
+        1.0,
+        0.96
+      ],
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": 0.03999999999999998,
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": 0.03999999999999998
+    },
+    "variant_shots_budget": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": 2500,
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": 2500,
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": 2500,
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": 2500,
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": 2500,
+      "('b7044811a1db684cf86417dbd99a900d', 'IZ')": 2500,
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": 2500,
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": 2500
+    },
+    "variant_shots_executed": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": 350,
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": 350,
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": 350,
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": 350,
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": 350,
+      "('b7044811a1db684cf86417dbd99a900d', 'IZ')": 350,
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": 350,
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": 350
+    },
+    "variant_iterations": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": 7,
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": 7,
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": 7,
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": 7,
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": 7,
+      "('b7044811a1db684cf86417dbd99a900d', 'IZ')": 7,
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": 7,
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": 7
+    },
+    "variant_stopping_info": {
+      "('c51d10b0624e7af1acc1db62384d68d9', 'ZIIIIIIIII')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('6ebd41edc237d1739c40eb9b468c23fa', 'ZIIIIIIIII')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('4852dc0a3feb174c1b1c640b324bd5e0', 'ZIIIIIIIII')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('ccf2f1acf75289c810bb6db554fbb87c', 'ZIIIIIIIII')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'II')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IZ')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IX')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      },
+      "('b7044811a1db684cf86417dbd99a900d', 'IY')": {
+        "criterion": "dma",
+        "distances": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "aggregate": 0.0,
+        "threshold": 0.03,
+        "offset": 2,
+        "window": 3,
+        "alpha": null
+      }
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 50,
+      "threshold": 0.03,
+      "offset": 2,
+      "stability_k": 3,
+      "stopping_criterion": "dma",
+      "distance_metric": "tvd",
+      "window_size": 3,
+      "ewma_alpha": null
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('1c2e2762a2da8e7e3b7b8a479bea14b4', 'ZIIIIIIIIII')": 0.12000000000000001
+      }
+    }
+  },
+  "shots_executed": 2800,
+  "distance_to_noisy_vanilla": 0.10490000000000002
+}

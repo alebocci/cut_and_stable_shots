@@ -1,0 +1,552 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[11];\nx q[8];\ncx q[8],q[2];\nt q[9];\ncx q[2],q[8];\nt q[3];\ncx q[2],q[8];\ns q[4];\ncx q[5],q[4];\nx q[10];\ncx q[10],q[3];\nx q[3];\ncx q[10],q[1];\nt q[7];\ncx q[7],q[2];\nx q[0];\ncx q[8],q[2];\nx q[2];\ncx q[8],q[2];\nx q[8];\ncx q[10],q[1];\nt q[9];\ncx q[8],q[2];\nz q[7];\ncx q[0],q[2];\nz q[6];\ncx q[7],q[8];\nz q[10];\ncx q[2],q[8];\nz q[3];\ncx q[5],q[2];\nz q[10];\ncx q[5],q[8];\nt q[4];\ncx q[9],q[3];\ns q[1];\ncx q[10],q[8];\nh q[9];\ncx q[3],q[2];\nz q[3];\ncx q[2],q[8];",
+    "observable": "ZIIIIIIIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "cc_incremental_qubit_prop",
+    "perf_exp_val": -0.9999999999999998,
+    "shots_allocation": "qubit_driven_proportional_incremental",
+    "incremental_batch_shots": 50,
+    "incremental_threshold": 0.05,
+    "incremental_offset": 3,
+    "incremental_stability_k": 3,
+    "incremental_stopping_criterion": "ewma",
+    "incremental_distance_metric": "tvd",
+    "incremental_window_size": 3,
+    "incremental_ewma_alpha": 0.5,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('84627d0eab4760c2176d42527f73df13', 'ZIIIIIIIIII')": -0.9566697435897437
+      }
+    }
+  },
+  "times": {
+    "time_total": 253.23326380876824,
+    "time_cutting": 0.00010380754247307777,
+    "time_execution": 253.23219391377643,
+    "time_sew": 0.0009596860036253929
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 11,
+      "depth": 16,
+      "num_gates": 40,
+      "2q_depth": 13,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "x": 6,
+        "z": 6,
+        "t": 5,
+        "s": 2,
+        "h": 1
+      }
+    },
+    "cut_info": {
+      "num_fragments": 2,
+      "fragments_qubits": [
+        9,
+        2
+      ],
+      "num_variations": 7,
+      "variations": [
+        4,
+        3
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 2,
+      "num_variants": 8,
+      "variations_per_fragment": [
+        4,
+        3
+      ],
+      "total_allocated_shots": 20000,
+      "total_executed_shots": 4100,
+      "min_allocated_shots_per_variant": 909,
+      "max_allocated_shots_per_variant": 4091,
+      "min_executed_shots_per_variant": 400,
+      "max_executed_shots_per_variant": 750,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')",
+          "fragment_hash": "8b92d3c7a9bb1bc53e2af05255d50525",
+          "observable": "IIIIIIIIZ",
+          "allocated_shots": 4091,
+          "executed_shots": 500,
+          "iterations": 10
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')",
+          "fragment_hash": "5217d1bc3d2d3f46938c3d5dad324890",
+          "observable": "IIIIIIIIZ",
+          "allocated_shots": 4091,
+          "executed_shots": 600,
+          "iterations": 12
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')",
+          "fragment_hash": "138ef7c5993143b9fec4afa64f03e01c",
+          "observable": "IIIIIIIIZ",
+          "allocated_shots": 4091,
+          "executed_shots": 750,
+          "iterations": 15
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')",
+          "fragment_hash": "b8d6d3811c9e09445eaf14d55a53fffb",
+          "observable": "IIIIIIIIZ",
+          "allocated_shots": 4091,
+          "executed_shots": 650,
+          "iterations": 13
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')",
+          "fragment_hash": "391d9a17e0d4e35d233bee15d9a9dd01",
+          "observable": "II",
+          "allocated_shots": 909,
+          "executed_shots": 400,
+          "iterations": 8
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')",
+          "fragment_hash": "391d9a17e0d4e35d233bee15d9a9dd01",
+          "observable": "IZ",
+          "allocated_shots": 909,
+          "executed_shots": 400,
+          "iterations": 8
+        },
+        {
+          "variant_index": 5,
+          "variant_key": "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')",
+          "fragment_hash": "391d9a17e0d4e35d233bee15d9a9dd01",
+          "observable": "IX",
+          "allocated_shots": 909,
+          "executed_shots": 400,
+          "iterations": 8
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')",
+          "fragment_hash": "391d9a17e0d4e35d233bee15d9a9dd01",
+          "observable": "IY",
+          "allocated_shots": 909,
+          "executed_shots": 400,
+          "iterations": 8
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "8b92d3c7a9bb1bc53e2af05255d50525",
+        "observables": [
+          "IIIIIIIIZ",
+          "IIIIIIIIZ",
+          "IIIIIIIIZ",
+          "IIIIIIIIZ"
+        ],
+        "fragment_stats": {
+          "qubits": 9,
+          "depth": 16,
+          "num_gates": 37,
+          "2q_depth": 13,
+          "num_1q_gates": 18,
+          "num_2q_gates": 19,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 19,
+            "x": 6,
+            "z": 5,
+            "t": 4,
+            "id": 1,
+            "s": 1,
+            "h": 1
+          }
+        }
+      },
+      {
+        "fragment_hash": "391d9a17e0d4e35d233bee15d9a9dd01",
+        "observables": [
+          "II",
+          "IX",
+          "IY"
+        ],
+        "fragment_stats": {
+          "qubits": 2,
+          "depth": 3,
+          "num_gates": 3,
+          "2q_depth": 1,
+          "num_1q_gates": 2,
+          "num_2q_gates": 1,
+          "num_measurements": 0,
+          "gates": {
+            "s": 1,
+            "cx": 1,
+            "t": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": {
+        "101100110": 1,
+        "000100111": 3,
+        "100100010": 33,
+        "100100110": 36,
+        "100101011": 4,
+        "101100011": 3,
+        "100100111": 170,
+        "100100011": 178,
+        "100110011": 16,
+        "100100100": 1,
+        "100100001": 7,
+        "101100111": 5,
+        "100110111": 16,
+        "100000111": 1,
+        "110000111": 1,
+        "100101111": 4,
+        "110100011": 1,
+        "101101011": 1,
+        "110100001": 1,
+        "000100011": 4,
+        "000101011": 1,
+        "000110111": 1,
+        "100110010": 2,
+        "001100011": 1,
+        "110100111": 1,
+        "100000101": 1,
+        "100111011": 1,
+        "100000011": 2,
+        "101100010": 1,
+        "100100101": 1,
+        "101110010": 1,
+        "000100001": 1
+      },
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": {
+        "100110110": 2,
+        "100100001": 14,
+        "100110111": 6,
+        "100110100": 43,
+        "100110101": 206,
+        "100110000": 40,
+        "100110001": 223,
+        "100110011": 4,
+        "000110101": 5,
+        "100010001": 2,
+        "000110001": 5,
+        "100111001": 3,
+        "100100101": 13,
+        "110110101": 4,
+        "000110100": 2,
+        "100010101": 2,
+        "101110001": 2,
+        "110110001": 4,
+        "100111101": 1,
+        "100100100": 2,
+        "100100000": 5,
+        "001110001": 1,
+        "000100000": 1,
+        "000110111": 1,
+        "100010000": 1,
+        "100010100": 1,
+        "100110010": 2,
+        "100100011": 1,
+        "101110101": 2,
+        "101100101": 1,
+        "101100000": 1
+      },
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": {
+        "100110001": 132,
+        "100110000": 31,
+        "100100111": 139,
+        "100100010": 27,
+        "100010101": 1,
+        "100110110": 5,
+        "100100011": 131,
+        "100110101": 132,
+        "110110001": 2,
+        "100110100": 31,
+        "100100110": 21,
+        "100100100": 3,
+        "100110111": 10,
+        "100100001": 10,
+        "110110101": 2,
+        "100110010": 3,
+        "100110011": 14,
+        "101100010": 2,
+        "101110101": 4,
+        "000110001": 3,
+        "101100110": 2,
+        "100100101": 10,
+        "101100111": 3,
+        "101110001": 3,
+        "100101011": 5,
+        "100011111": 1,
+        "100100000": 2,
+        "100111001": 3,
+        "100111101": 3,
+        "100101110": 1,
+        "101100011": 1,
+        "000100110": 1,
+        "000110101": 1,
+        "000100011": 3,
+        "100101100": 1,
+        "110100001": 1,
+        "000100111": 1,
+        "110100011": 2,
+        "000100010": 1,
+        "000101010": 1,
+        "100000111": 1
+      },
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": {
+        "100100010": 22,
+        "010110111": 1,
+        "100100101": 9,
+        "101110100": 1,
+        "100100111": 123,
+        "100100110": 28,
+        "100110100": 18,
+        "110100111": 5,
+        "000110001": 5,
+        "101110101": 4,
+        "100110101": 121,
+        "100110001": 104,
+        "100110000": 17,
+        "100100011": 116,
+        "101100110": 2,
+        "100111101": 3,
+        "000100111": 5,
+        "100100001": 10,
+        "100000110": 1,
+        "100110010": 3,
+        "000100011": 4,
+        "110110101": 3,
+        "100010101": 1,
+        "100100000": 3,
+        "100110111": 11,
+        "110100011": 2,
+        "100110011": 5,
+        "100101011": 2,
+        "101100111": 2,
+        "110110001": 4,
+        "100100100": 4,
+        "100110110": 1,
+        "100010001": 1,
+        "101100011": 4,
+        "110100001": 1,
+        "000110000": 1,
+        "100111111": 1,
+        "100000111": 1,
+        "000110101": 1
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": {
+        "01": 71,
+        "00": 326,
+        "10": 3
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')": {
+        "11": 2,
+        "01": 72,
+        "10": 4,
+        "00": 322
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": {
+        "01": 35,
+        "11": 24,
+        "10": 168,
+        "00": 173
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": {
+        "01": 25,
+        "11": 32,
+        "00": 173,
+        "10": 170
+      }
+    },
+    "variant_exp_values": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": -0.9560000000000002,
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": -0.95,
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": -0.9706666666666668,
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": -0.9476923076923075,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": [
+        0.9999999999999999,
+        0.97
+      ],
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": 0.040000000000000036,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": -0.010000000000000009
+    },
+    "variant_shots_budget": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": 4091,
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": 4091,
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": 4091,
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": 4091,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": 909,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')": 909,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": 909,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": 909
+    },
+    "variant_shots_executed": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": 500,
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": 600,
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": 750,
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": 650,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": 400,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')": 400,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": 400,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": 400
+    },
+    "variant_iterations": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": 10,
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": 12,
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": 15,
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": 13,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": 8,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')": 8,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": 8,
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": 8
+    },
+    "variant_stopping_info": {
+      "('8b92d3c7a9bb1bc53e2af05255d50525', 'IIIIIIIIZ')": {
+        "criterion": "ewma",
+        "distances": [
+          0.045999999999999985,
+          0.04666666666666666,
+          0.04628571428571429
+        ],
+        "aggregate": 0.04630952380952381,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('5217d1bc3d2d3f46938c3d5dad324890', 'IIIIIIIIZ')": {
+        "criterion": "ewma",
+        "distances": [
+          0.033999999999999996,
+          0.03863636363636363,
+          0.030000000000000027
+        ],
+        "aggregate": 0.033159090909090916,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('138ef7c5993143b9fec4afa64f03e01c', 'IIIIIIIIZ')": {
+        "criterion": "ewma",
+        "distances": [
+          0.035384615384615375,
+          0.03389610389610388,
+          0.04066666666666665
+        ],
+        "aggregate": 0.03765351315351314,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('b8d6d3811c9e09445eaf14d55a53fffb', 'IIIIIIIIZ')": {
+        "criterion": "ewma",
+        "distances": [
+          0.04772727272727275,
+          0.028888888888888895,
+          0.04476923076923079
+        ],
+        "aggregate": 0.0415386557886558,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'II')": {
+        "criterion": "ewma",
+        "distances": [
+          0.006666666666666644,
+          0.028571428571428574,
+          0.010999999999999953
+        ],
+        "aggregate": 0.014309523809523782,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IZ')": {
+        "criterion": "ewma",
+        "distances": [
+          0.020000000000000014,
+          0.024285714285714265,
+          0.033000000000000015
+        ],
+        "aggregate": 0.027571428571428577,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IX')": {
+        "criterion": "ewma",
+        "distances": [
+          0.046666666666666676,
+          0.015714285714285695,
+          0.031999999999999994
+        ],
+        "aggregate": 0.03159523809523809,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      },
+      "('391d9a17e0d4e35d233bee15d9a9dd01', 'IY')": {
+        "criterion": "ewma",
+        "distances": [
+          0.02666666666666668,
+          0.013571428571428533,
+          0.021000000000000005
+        ],
+        "aggregate": 0.020559523809523805,
+        "threshold": 0.05,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      }
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 50,
+      "threshold": 0.05,
+      "offset": 3,
+      "stability_k": 3,
+      "stopping_criterion": "ewma",
+      "distance_metric": "tvd",
+      "window_size": 3,
+      "ewma_alpha": 0.5
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('84627d0eab4760c2176d42527f73df13', 'ZIIIIIIIIII')": 0.04333025641025612
+      }
+    }
+  },
+  "shots_executed": 4100,
+  "distance_to_noisy_vanilla": 0.3036697435897441
+}

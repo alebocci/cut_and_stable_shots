@@ -1,0 +1,1104 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nx q[2];\ncx q[2],q[3];\nt q[2];\ncx q[3],q[2];\ns q[1];\ncx q[4],q[3];\nt q[0];\ncx q[2],q[3];\nz q[2];\ncx q[2],q[3];\nt q[3];\ncx q[4],q[2];\nz q[2];\ncx q[2],q[3];\nh q[2];\ncx q[1],q[0];\ns q[2];\ncx q[1],q[4];\nx q[1];\ncx q[1],q[3];\nx q[3];\ncx q[3],q[2];\nh q[2];\ncx q[4],q[0];\nz q[0];\ncx q[1],q[0];\nh q[2];\ncx q[2],q[3];\nt q[4];\ncx q[4],q[1];\nh q[2];\ncx q[1],q[4];\ns q[4];\ncx q[1],q[0];\nt q[1];\ncx q[2],q[3];\ns q[4];\ncx q[3],q[2];\nt q[3];\ncx q[0],q[1];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_sherbrooke"
+      ]
+    ],
+    "operation": "cc_incremental_qubit_prop",
+    "perf_exp_val": 0.9999999999999991,
+    "shots_allocation": "qubit_driven_proportional_incremental",
+    "incremental_batch_shots": 100,
+    "incremental_threshold": 0.01,
+    "incremental_offset": 2,
+    "incremental_stability_k": 3,
+    "incremental_stopping_criterion": "delta",
+    "incremental_distance_metric": "tvd",
+    "incremental_window_size": 2,
+    "incremental_ewma_alpha": null,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('4141f1cd7de71dd9864e6d841fb31493', 'ZIIII')": 0.963912329110749
+      }
+    }
+  },
+  "times": {
+    "time_total": 358.9011724847369,
+    "time_cutting": 0.00015289289876818657,
+    "time_execution": 358.90002276096493,
+    "time_sew": 0.0009573311544954777
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 21,
+      "num_gates": 40,
+      "2q_depth": 13,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "t": 6,
+        "s": 4,
+        "h": 4,
+        "x": 3,
+        "z": 3
+      }
+    },
+    "cut_info": {
+      "num_fragments": 2,
+      "fragments_qubits": [
+        3,
+        4
+      ],
+      "num_variations": 25,
+      "variations": [
+        9,
+        16
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 2,
+      "num_variants": 32,
+      "variations_per_fragment": [
+        9,
+        16
+      ],
+      "total_allocated_shots": 20000,
+      "total_executed_shots": 19672,
+      "min_allocated_shots_per_variant": 536,
+      "max_allocated_shots_per_variant": 714,
+      "min_executed_shots_per_variant": 500,
+      "max_executed_shots_per_variant": 714,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'III')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "III",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IZI')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IZI",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IIZ')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IIZ",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 0,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IZZ')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IZZ",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IXI')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IXI",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IXZ')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IXZ",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IYI')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IYI",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IYZ')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IYZ",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IIX')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IIX",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IZX')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IZX",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IXX')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IXX",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 5,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IYX')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IYX",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IIY')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IIY",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IZY')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IZY",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 7,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IXY')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IXY",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 8,
+          "variant_key": "('691aa26721a8eb53cf19545462aa536e', 'IYY')",
+          "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+          "observable": "IYY",
+          "allocated_shots": 536,
+          "executed_shots": 536,
+          "iterations": 6
+        },
+        {
+          "variant_index": 9,
+          "variant_key": "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')",
+          "fragment_hash": "4c6c40b4d8de82fbd94882e5853fb62a",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 600,
+          "iterations": 6
+        },
+        {
+          "variant_index": 10,
+          "variant_key": "('6783b255b46244cef9f2192e2743a281', 'IZII')",
+          "fragment_hash": "6783b255b46244cef9f2192e2743a281",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 500,
+          "iterations": 5
+        },
+        {
+          "variant_index": 11,
+          "variant_key": "('bccb18b974fcaf3f5da3651327cab840', 'IZII')",
+          "fragment_hash": "bccb18b974fcaf3f5da3651327cab840",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 12,
+          "variant_key": "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')",
+          "fragment_hash": "0843f9cd4fd4e5e5fe6f3fb47116a97e",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 13,
+          "variant_key": "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')",
+          "fragment_hash": "3e6901e8cb0d4d8f8a594ff45f5d531c",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 14,
+          "variant_key": "('b64450516b3a642c5071d3cdaf65598f', 'IZII')",
+          "fragment_hash": "b64450516b3a642c5071d3cdaf65598f",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 15,
+          "variant_key": "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')",
+          "fragment_hash": "32b2db6da99d40ba63f7801f2b46c0f8",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 16,
+          "variant_key": "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')",
+          "fragment_hash": "b6f2291564bddd6923ddae237ef1beaf",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 17,
+          "variant_key": "('ae472c5571b631c93046ac7f32481689', 'IZII')",
+          "fragment_hash": "ae472c5571b631c93046ac7f32481689",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 18,
+          "variant_key": "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')",
+          "fragment_hash": "87d9e5d92b6b041f028e1b59abb61194",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 19,
+          "variant_key": "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')",
+          "fragment_hash": "aa212a3f35e15de1b2013d1e90051e72",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 20,
+          "variant_key": "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')",
+          "fragment_hash": "7c955aae9a51f876b928f44b2c719a8f",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 21,
+          "variant_key": "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')",
+          "fragment_hash": "0ac9533e824da1163b5c7f512dea8a58",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 22,
+          "variant_key": "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')",
+          "fragment_hash": "8e1b9b84e954cd16fabc3b6a744d165f",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 23,
+          "variant_key": "('a5922943ce06debccff3e9e65c952138', 'IZII')",
+          "fragment_hash": "a5922943ce06debccff3e9e65c952138",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        },
+        {
+          "variant_index": 24,
+          "variant_key": "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')",
+          "fragment_hash": "62d85e198b92b1e3dd325f60e07505cc",
+          "observable": "IZII",
+          "allocated_shots": 714,
+          "executed_shots": 714,
+          "iterations": 8
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "691aa26721a8eb53cf19545462aa536e",
+        "observables": [
+          "III",
+          "IXI",
+          "IYI",
+          "IIX",
+          "IXX",
+          "IYX",
+          "IIY",
+          "IXY",
+          "IYY"
+        ],
+        "fragment_stats": {
+          "qubits": 3,
+          "depth": 11,
+          "num_gates": 12,
+          "2q_depth": 7,
+          "num_1q_gates": 5,
+          "num_2q_gates": 7,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 7,
+            "t": 2,
+            "z": 2,
+            "x": 1
+          }
+        }
+      },
+      {
+        "fragment_hash": "4c6c40b4d8de82fbd94882e5853fb62a",
+        "observables": [
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII",
+          "IZII"
+        ],
+        "fragment_stats": {
+          "qubits": 4,
+          "depth": 11,
+          "num_gates": 19,
+          "2q_depth": 8,
+          "num_1q_gates": 10,
+          "num_2q_gates": 9,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 9,
+            "s": 3,
+            "t": 3,
+            "id": 2,
+            "x": 1,
+            "z": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": {
+        "011": 4,
+        "110": 17,
+        "000": 15,
+        "010": 500
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZI')": {
+        "011": 6,
+        "110": 9,
+        "000": 16,
+        "010": 505
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIZ')": {
+        "011": 5,
+        "110": 12,
+        "000": 13,
+        "010": 506
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZZ')": {
+        "110": 10,
+        "010": 512,
+        "011": 6,
+        "000": 8
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": {
+        "011": 1,
+        "100": 8,
+        "110": 7,
+        "010": 265,
+        "000": 254,
+        "001": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXZ')": {
+        "011": 6,
+        "110": 3,
+        "001": 4,
+        "100": 4,
+        "010": 259,
+        "000": 259,
+        "111": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": {
+        "011": 3,
+        "100": 5,
+        "000": 270,
+        "010": 251,
+        "110": 5,
+        "001": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYZ')": {
+        "011": 5,
+        "010": 258,
+        "000": 258,
+        "110": 6,
+        "100": 5,
+        "001": 3,
+        "101": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": {
+        "100": 5,
+        "111": 4,
+        "110": 277,
+        "010": 246,
+        "000": 3,
+        "011": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZX')": {
+        "100": 10,
+        "111": 5,
+        "000": 14,
+        "010": 252,
+        "110": 252,
+        "011": 3
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": {
+        "001": 2,
+        "100": 124,
+        "000": 118,
+        "010": 140,
+        "110": 149,
+        "011": 2,
+        "101": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": {
+        "100": 130,
+        "110": 131,
+        "010": 131,
+        "000": 140,
+        "001": 2,
+        "101": 1,
+        "111": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": {
+        "011": 9,
+        "111": 2,
+        "100": 5,
+        "110": 262,
+        "000": 9,
+        "010": 249
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZY')": {
+        "100": 9,
+        "110": 248,
+        "000": 11,
+        "010": 257,
+        "111": 4,
+        "011": 7
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": {
+        "111": 4,
+        "101": 2,
+        "100": 136,
+        "000": 126,
+        "010": 141,
+        "110": 124,
+        "001": 2,
+        "011": 1
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": {
+        "001": 2,
+        "111": 2,
+        "000": 134,
+        "010": 133,
+        "110": 127,
+        "100": 137,
+        "101": 1
+      },
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": {
+        "1111": 14,
+        "0101": 5,
+        "1001": 8,
+        "1100": 7,
+        "1101": 566
+      },
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": {
+        "0100": 2,
+        "1101": 9,
+        "0001": 13,
+        "0111": 8,
+        "0101": 466,
+        "1000": 1,
+        "0011": 1
+      },
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": {
+        "1001": 7,
+        "1111": 11,
+        "0100": 4,
+        "0111": 6,
+        "0101": 327,
+        "1101": 351,
+        "1100": 4,
+        "0001": 3,
+        "1000": 1
+      },
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": {
+        "0100": 8,
+        "0111": 5,
+        "1001": 7,
+        "1111": 9,
+        "0101": 343,
+        "1101": 329,
+        "0001": 8,
+        "1100": 4,
+        "1000": 1
+      },
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": {
+        "1110": 15,
+        "0100": 7,
+        "1000": 17,
+        "1100": 663,
+        "1101": 11,
+        "1010": 1
+      },
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": {
+        "0000": 11,
+        "1100": 9,
+        "1001": 2,
+        "0110": 21,
+        "0100": 667,
+        "0101": 4
+      },
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": {
+        "1110": 6,
+        "0101": 1,
+        "0000": 9,
+        "1101": 5,
+        "1100": 332,
+        "0100": 346,
+        "1000": 3,
+        "0110": 12
+      },
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": {
+        "1110": 5,
+        "0110": 6,
+        "0000": 7,
+        "1100": 341,
+        "0100": 348,
+        "1000": 5,
+        "1101": 2
+      },
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": {
+        "1111": 7,
+        "1000": 10,
+        "1001": 7,
+        "1100": 345,
+        "1101": 329,
+        "0101": 4,
+        "1110": 8,
+        "0100": 4
+      },
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": {
+        "0110": 7,
+        "0111": 11,
+        "1100": 6,
+        "0101": 349,
+        "0100": 317,
+        "1101": 7,
+        "0001": 4,
+        "0000": 11,
+        "0011": 2
+      },
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": {
+        "1111": 2,
+        "0111": 5,
+        "1101": 178,
+        "0000": 3,
+        "0100": 150,
+        "1110": 7,
+        "0101": 184,
+        "1100": 171,
+        "0001": 4,
+        "0110": 2,
+        "1001": 3,
+        "1000": 5
+      },
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": {
+        "0000": 3,
+        "1111": 5,
+        "0111": 7,
+        "1001": 3,
+        "1000": 5,
+        "1100": 171,
+        "0100": 164,
+        "0101": 162,
+        "1101": 182,
+        "0001": 8,
+        "0110": 3,
+        "1110": 1
+      },
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": {
+        "1111": 9,
+        "1110": 14,
+        "0100": 3,
+        "1100": 346,
+        "1101": 334,
+        "1011": 1,
+        "1000": 3,
+        "0101": 1,
+        "0111": 1,
+        "1001": 2
+      },
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": {
+        "0001": 5,
+        "1101": 3,
+        "0100": 343,
+        "0101": 336,
+        "0110": 15,
+        "1100": 2,
+        "0111": 4,
+        "0000": 6
+      },
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": {
+        "0001": 5,
+        "1111": 5,
+        "0101": 162,
+        "0100": 201,
+        "0110": 8,
+        "1101": 170,
+        "1001": 5,
+        "1100": 148,
+        "0111": 2,
+        "1110": 5,
+        "0000": 2,
+        "1000": 1
+      },
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": {
+        "0111": 4,
+        "0101": 159,
+        "0110": 4,
+        "1101": 166,
+        "0100": 198,
+        "1000": 4,
+        "1001": 3,
+        "1100": 158,
+        "1111": 4,
+        "1110": 6,
+        "0010": 2,
+        "0001": 2,
+        "0000": 4
+      }
+    },
+    "variant_exp_values": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": [
+        1.0,
+        -0.9402985074626865,
+        0.9552238805970149,
+        -0.9328358208955223
+      ],
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": [
+        -0.01865671641791048,
+        -0.0037313432835820778
+      ],
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": [
+        0.03358208955223872,
+        -0.003731343283582089
+      ],
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": [
+        -0.06716417910447754,
+        0.01119402985074629
+      ],
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": 0.003731343283582088,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": 0.022388059701492508,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": [
+        -0.0037313432835821003,
+        -0.018656716417910512
+      ],
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": -0.04477611940298507,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": -0.01119402985074624,
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": 0.9533333333333334,
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": 0.9640000000000001,
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": 0.9523809523809523,
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": 0.9607843137254901,
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": 0.9551820728291316,
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": 0.9411764705882353,
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": 0.9495798319327731,
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": 0.969187675070028,
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": 0.9579831932773109,
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": 0.9439775910364145,
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": 0.9551820728291316,
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": 0.9551820728291316,
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": 0.9299719887955182,
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": 0.9467787114845938,
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": 0.9439775910364145,
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": 0.9439775910364145
+    },
+    "variant_shots_budget": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": 536,
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": 714,
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": 714,
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": 714,
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": 714,
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": 714,
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": 714,
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": 714,
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": 714,
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": 714,
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": 714,
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": 714,
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": 714,
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": 714,
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": 714,
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": 714,
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": 714
+    },
+    "variant_shots_executed": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYZ')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": 536,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": 536,
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": 600,
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": 500,
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": 714,
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": 714,
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": 714,
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": 714,
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": 714,
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": 714,
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": 714,
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": 714,
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": 714,
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": 714,
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": 714,
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": 714,
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": 714,
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": 714
+    },
+    "variant_iterations": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZI')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIZ')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZZ')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXZ')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYZ')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZX')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IZY')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": 6,
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": 6,
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": 6,
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": 5,
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": 8,
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": 8,
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": 8,
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": 8,
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": 8,
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": 8,
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": 8,
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": 8,
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": 8,
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": 8,
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": 8,
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": 8,
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": 8,
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": 8
+    },
+    "variant_stopping_info": {
+      "('691aa26721a8eb53cf19545462aa536e', 'III')": {
+        "criterion": "delta",
+        "distance": 0.00783582089552238,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZI')": {
+        "criterion": "delta",
+        "distance": 0.00414179104477611,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIZ')": {
+        "criterion": "delta",
+        "distance": 0.003917910447761194,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZZ')": {
+        "criterion": "delta",
+        "distance": 0.005074626865671652,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXI')": {
+        "criterion": "delta",
+        "distance": 0.0043283582089552325,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXZ')": {
+        "criterion": "delta",
+        "distance": 0.007574626865671646,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYI')": {
+        "criterion": "delta",
+        "distance": 0.023656716417910433,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYZ')": {
+        "criterion": "delta",
+        "distance": 0.016343283582089536,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIX')": {
+        "criterion": "delta",
+        "distance": 0.009216417910447782,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZX')": {
+        "criterion": "delta",
+        "distance": 0.012649253731343265,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXX')": {
+        "criterion": "delta",
+        "distance": 0.020223880597014937,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYX')": {
+        "criterion": "delta",
+        "distance": 0.008171641791044808,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IIY')": {
+        "criterion": "delta",
+        "distance": 0.011305970149253776,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IZY')": {
+        "criterion": "delta",
+        "distance": 0.008059701492537288,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IXY')": {
+        "criterion": "delta",
+        "distance": 0.020597014925373136,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('691aa26721a8eb53cf19545462aa536e', 'IYY')": {
+        "criterion": "delta",
+        "distance": 0.022462686567164186,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('4c6c40b4d8de82fbd94882e5853fb62a', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.007500000000000011,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('6783b255b46244cef9f2192e2743a281', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.007999999999999981,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('bccb18b974fcaf3f5da3651327cab840', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.012408963585434172,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('0843f9cd4fd4e5e5fe6f3fb47116a97e', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.007380952380952377,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('3e6901e8cb0d4d8f8a594ff45f5d531c', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.006890756302521,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b64450516b3a642c5071d3cdaf65598f', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.005112044817927188,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('32b2db6da99d40ba63f7801f2b46c0f8', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.007997198879551814,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('b6f2291564bddd6923ddae237ef1beaf', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.00613445378151262,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('ae472c5571b631c93046ac7f32481689', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.006932773109243715,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('87d9e5d92b6b041f028e1b59abb61194', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.008613445378151261,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('aa212a3f35e15de1b2013d1e90051e72', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.011554621848739495,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('7c955aae9a51f876b928f44b2c719a8f', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.015126050420168078,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('0ac9533e824da1163b5c7f512dea8a58', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.014397759103641439,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('8e1b9b84e954cd16fabc3b6a744d165f', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.009803921568627433,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('a5922943ce06debccff3e9e65c952138', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.009075630252100824,
+        "threshold": 0.01,
+        "offset": 2
+      },
+      "('62d85e198b92b1e3dd325f60e07505cc', 'IZII')": {
+        "criterion": "delta",
+        "distance": 0.015126050420168052,
+        "threshold": 0.01,
+        "offset": 2
+      }
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 100,
+      "threshold": 0.01,
+      "offset": 2,
+      "stability_k": 3,
+      "stopping_criterion": "delta",
+      "distance_metric": "tvd",
+      "window_size": 2,
+      "ewma_alpha": null
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('4141f1cd7de71dd9864e6d841fb31493', 'ZIIII')": 0.036087670889250134
+      }
+    }
+  },
+  "shots_executed": 19672,
+  "distance_to_noisy_vanilla": 0.012187670889251101
+}

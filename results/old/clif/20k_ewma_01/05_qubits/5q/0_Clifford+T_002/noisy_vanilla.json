@@ -1,0 +1,82 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nz q[1];\ncx q[3],q[4];\nx q[3];\ncx q[2],q[1];\nz q[1];\ncx q[0],q[3];\nt q[4];\ncx q[2],q[1];\nx q[1];\ncx q[3],q[0];\nz q[2];\ncx q[4],q[0];\nx q[2];\ncx q[3],q[0];\ns q[2];\ncx q[2],q[1];\nt q[2];\ncx q[1],q[4];\nt q[4];\ncx q[2],q[4];\nh q[0];\ncx q[1],q[2];\ns q[3];\ncx q[2],q[1];\nz q[1];\ncx q[1],q[2];\nh q[0];\ncx q[0],q[3];\nt q[4];\ncx q[1],q[2];\nz q[3];\ncx q[4],q[0];\nx q[1];\ncx q[3],q[0];\nx q[2];\ncx q[4],q[0];\nz q[2];\ncx q[2],q[1];\nz q[2];\ncx q[2],q[1];",
+    "observable": "ZIIII",
+    "shots": 30000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": -0.9999999999999996
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": -0.6650000000000001
+      }
+    }
+  },
+  "times": {
+    "time_total": 3.698980859015137,
+    "time_execution": 3.698980859015137
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 21,
+      "num_gates": 40,
+      "2q_depth": 12,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "z": 7,
+        "x": 5,
+        "t": 4,
+        "s": 2,
+        "h": 2
+      }
+    },
+    "counts": {
+      "00100": 1,
+      "01111": 3,
+      "10100": 6,
+      "00011": 1,
+      "11110": 4,
+      "00000": 5,
+      "01010": 10,
+      "01101": 63,
+      "11001": 21543,
+      "10000": 70,
+      "11011": 519,
+      "11111": 20,
+      "11000": 4319,
+      "01000": 268,
+      "01100": 13,
+      "11101": 1053,
+      "01011": 42,
+      "10011": 9,
+      "10010": 1,
+      "00001": 19,
+      "10101": 24,
+      "11100": 225,
+      "00101": 1,
+      "01001": 1356,
+      "10001": 322,
+      "11010": 103
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": 0.3349999999999994
+      }
+    }
+  },
+  "shots_executed": 30000,
+  "distance_to_noisy_vanilla": 0.6650000000000001
+}

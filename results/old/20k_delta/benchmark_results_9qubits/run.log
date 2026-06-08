@@ -1,0 +1,124 @@
+========================================================================
+CUTTABLE CIRCUIT BENCHMARK RUN REPORT
+Timestamp : 2026-04-23 09:25:08
+========================================================================
+
+DESIGN
+------------------------------------------------------------------------
+  Input        : valid_circuits.pkl produced by generate_and_cut.py
+  Cut strategy : find_and_place_cuts + CutStrategy(min_free_wires=2)
+  Ground truth : PennyLane default.qubit statevector (shots=None)
+  Reconstruction: qcut_processing_fn (tensor contraction)
+  Observable   : per-circuit Pauli string stored in CircuitSpec.observable
+  Error        : |perf_exp_val - result|
+
+CONFIGURATION
+------------------------------------------------------------------------
+  Shots (B)          : 20000
+  Noisy backend      : 'aer.fake_torino'
+  Ideal backend      : 'aer.perfect'
+  Simulator seed     : 42
+  Output dir         : PosixPath('results/benchmark_results_9qubits')
+  2q-gate alpha      : 0.8
+  Incr. batch shots  : 50
+  Incr. threshold    : 0.03
+  Incr. offset       : 2
+  Incr. stability k  : 3
+  Selected modes     : noisy_vanilla, cut_divided_budget, cut_incremental_budget, cut_incremental_qubit_prop, cut_qubit_prop
+
+SUMMARY
+------------------------------------------------------------------------
+Total: 50  ok: 45  failed: 5
+
+RESULTS BY CIRCUIT
+------------------------------------------------------------------------
+  9q / 3_Clifford+T_034
+    ✓ [   3.3s]  noisy_vanilla
+    ✓ [ 176.4s]  cut_divided_budget
+    ✓ [ 848.8s]  cut_incremental_budget
+    ✓ [ 675.7s]  cut_incremental_qubit_prop
+    ✓ [ 109.6s]  cut_qubit_prop
+
+  9q / 0_Clifford+T_004
+    ✓ [   5.3s]  noisy_vanilla
+    ✓ [ 689.7s]  cut_divided_budget
+    ✓ [2534.2s]  cut_incremental_budget
+    ✓ [2156.0s]  cut_incremental_qubit_prop
+    ✓ [ 447.2s]  cut_qubit_prop
+
+  9q / 2_Clifford+T_016
+    ✓ [   8.4s]  noisy_vanilla
+    ✓ [ 682.9s]  cut_divided_budget
+    ✓ [2533.5s]  cut_incremental_budget
+    ✓ [2157.1s]  cut_incremental_qubit_prop
+    ✓ [ 449.3s]  cut_qubit_prop
+
+  9q / 4_Clifford+T_070
+    ✓ [  11.5s]  noisy_vanilla
+    ✓ [ 172.2s]  cut_divided_budget
+    ✓ [ 850.9s]  cut_incremental_budget
+    ✓ [ 673.8s]  cut_incremental_qubit_prop
+    ✓ [ 108.1s]  cut_qubit_prop
+
+  9q / 1_QuantumVolume_012
+    ✓ [   9.8s]  noisy_vanilla
+    ✓ [3382.6s]  cut_divided_budget
+    ✓ [2161.0s]  cut_incremental_budget
+    ✓ [1222.0s]  cut_incremental_qubit_prop
+    ✓ [ 162.0s]  cut_qubit_prop
+
+  9q / 6_QuantumVolume_126
+    ✗ [   0.0s]  noisy_vanilla
+             ERROR: RuntimeError: skipped: ground truth failed
+    ✗ [   0.0s]  cut_divided_budget
+             ERROR: RuntimeError: skipped: ground truth failed
+    ✗ [   0.0s]  cut_incremental_budget
+             ERROR: RuntimeError: skipped: ground truth failed
+    ✗ [   0.0s]  cut_incremental_qubit_prop
+             ERROR: RuntimeError: skipped: ground truth failed
+    ✗ [   0.0s]  cut_qubit_prop
+             ERROR: RuntimeError: skipped: ground truth failed
+
+  9q / 5_Clifford+T_106
+    ✓ [  14.2s]  noisy_vanilla
+    ✓ [ 518.6s]  cut_divided_budget
+    ✓ [2155.9s]  cut_incremental_budget
+    ✓ [1824.1s]  cut_incremental_qubit_prop
+    ✓ [ 237.9s]  cut_qubit_prop
+
+  9q / 7_Clifford+T_154
+    ✓ [  21.4s]  noisy_vanilla
+    ✓ [ 141.6s]  cut_divided_budget
+    ✓ [ 614.7s]  cut_incremental_budget
+    ✓ [ 556.8s]  cut_incremental_qubit_prop
+    ✓ [ 102.3s]  cut_qubit_prop
+
+  9q / 8_Clifford+T_166
+    ✓ [  13.8s]  noisy_vanilla
+    ✓ [ 119.8s]  cut_divided_budget
+    ✓ [ 519.4s]  cut_incremental_budget
+    ✓ [ 521.3s]  cut_incremental_qubit_prop
+    ✓ [ 103.1s]  cut_qubit_prop
+
+  9q / 9_Clifford+T_184
+    ✓ [  12.9s]  noisy_vanilla
+    ✓ [ 463.5s]  cut_divided_budget
+    ✓ [1577.0s]  cut_incremental_budget
+    ✓ [ 573.7s]  cut_incremental_qubit_prop
+    ✓ [  77.3s]  cut_qubit_prop
+
+------------------------------------------------------------------------
+FAILED MODES
+------------------------------------------------------------------------
+  9q / 6_QuantumVolume_126 / noisy_vanilla
+    RuntimeError: skipped: ground truth failed
+  9q / 6_QuantumVolume_126 / cut_divided_budget
+    RuntimeError: skipped: ground truth failed
+  9q / 6_QuantumVolume_126 / cut_incremental_budget
+    RuntimeError: skipped: ground truth failed
+  9q / 6_QuantumVolume_126 / cut_incremental_qubit_prop
+    RuntimeError: skipped: ground truth failed
+  9q / 6_QuantumVolume_126 / cut_qubit_prop
+    RuntimeError: skipped: ground truth failed
+
+========================================================================

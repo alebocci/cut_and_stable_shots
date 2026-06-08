@@ -1,0 +1,81 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nz q[1];\ncx q[3],q[4];\nx q[3];\ncx q[2],q[1];\nz q[1];\ncx q[0],q[3];\nt q[4];\ncx q[2],q[1];\nx q[1];\ncx q[3],q[0];\nz q[2];\ncx q[4],q[0];\nx q[2];\ncx q[3],q[0];\ns q[2];\ncx q[2],q[1];\nt q[2];\ncx q[1],q[4];\nt q[4];\ncx q[2],q[4];\nh q[0];\ncx q[1],q[2];\ns q[3];\ncx q[2],q[1];\nz q[1];\ncx q[1],q[2];\nh q[0];\ncx q[0],q[3];\nt q[4];\ncx q[1],q[2];\nz q[3];\ncx q[4],q[0];\nx q[1];\ncx q[3],q[0];\nx q[2];\ncx q[4],q[0];\nz q[2];\ncx q[2],q[1];\nz q[2];\ncx q[2],q[1];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": -0.9999999999999996
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": -0.6664
+      }
+    }
+  },
+  "times": {
+    "time_total": 3.776359407696873,
+    "time_execution": 3.776359407696873
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 21,
+      "num_gates": 40,
+      "2q_depth": 12,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "z": 7,
+        "x": 5,
+        "t": 4,
+        "s": 2,
+        "h": 2
+      }
+    },
+    "counts": {
+      "00100": 1,
+      "10100": 2,
+      "00011": 1,
+      "01010": 5,
+      "00000": 4,
+      "10011": 5,
+      "01011": 25,
+      "01111": 2,
+      "11001": 14374,
+      "01000": 177,
+      "01100": 10,
+      "10101": 12,
+      "00001": 9,
+      "11100": 152,
+      "11101": 680,
+      "11000": 2867,
+      "11111": 13,
+      "11011": 350,
+      "10000": 51,
+      "00101": 1,
+      "11010": 63,
+      "01001": 927,
+      "10001": 222,
+      "01101": 43,
+      "11110": 4
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('4ee828170dcfb350950a55594e1198b1', 'ZIIII')": 0.33359999999999956
+      }
+    }
+  },
+  "shots_executed": 20000,
+  "distance_to_noisy_vanilla": 0.6664
+}

@@ -1,0 +1,83 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nt q[0];\ncx q[3],q[4];\nz q[0];\ncx q[1],q[2];\nh q[1];\ncx q[3],q[4];\nh q[0];\ncx q[3],q[4];\nt q[3];\ncx q[2],q[1];\nx q[2];\ncx q[2],q[1];\nt q[4];\ncx q[4],q[3];\nh q[2];\ncx q[4],q[3];\ns q[3];\ncx q[1],q[0];\ns q[1];\ncx q[0],q[2];\nh q[0];\ncx q[4],q[3];\nx q[3];\ncx q[4],q[3];\ns q[0];\ncx q[4],q[3];\nx q[2];\ncx q[0],q[2];\ns q[2];\ncx q[4],q[2];\nx q[3];\ncx q[0],q[1];\nt q[4];\ncx q[1],q[2];\nz q[3];\ncx q[2],q[0];\ns q[1];\ncx q[4],q[3];\nx q[4];\ncx q[4],q[3];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_sherbrooke"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": 0.0
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('486afd9fdd535f3272cef6390dc1f01b', 'ZIIII')": 0.0018999999999999816
+      }
+    }
+  },
+  "times": {
+    "time_total": 1.6924213860183954,
+    "time_execution": 1.6924213860183954
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 16,
+      "num_gates": 40,
+      "2q_depth": 11,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "x": 5,
+        "s": 5,
+        "t": 4,
+        "h": 4,
+        "z": 2
+      }
+    },
+    "counts": {
+      "01010": 3,
+      "00100": 2,
+      "01111": 4,
+      "01101": 2,
+      "00011": 1,
+      "00110": 3,
+      "01000": 6,
+      "10011": 66,
+      "11001": 4666,
+      "10000": 1,
+      "11011": 4656,
+      "10010": 1,
+      "10111": 2,
+      "00001": 4,
+      "11100": 4709,
+      "10110": 63,
+      "11110": 4682,
+      "10001": 57,
+      "01001": 91,
+      "11010": 164,
+      "01110": 89,
+      "01011": 110,
+      "11101": 163,
+      "10100": 65,
+      "11111": 159,
+      "11000": 139,
+      "01100": 92
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_sherbrooke": {
+        "('486afd9fdd535f3272cef6390dc1f01b', 'ZIIII')": 0.0018999999999999816
+      }
+    }
+  },
+  "shots_executed": 20000,
+  "distance_to_noisy_vanilla": 0.0018999999999999816
+}

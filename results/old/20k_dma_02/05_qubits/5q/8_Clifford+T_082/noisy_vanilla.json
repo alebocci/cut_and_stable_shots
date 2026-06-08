@@ -1,0 +1,88 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[5];\nt q[4];\ncx q[4],q[0];\nx q[1];\ncx q[4],q[0];\ns q[1];\ncx q[4],q[0];\nx q[3];\ncx q[4],q[0];\nx q[1];\ncx q[2],q[1];\nh q[2];\ncx q[1],q[3];\ns q[4];\ncx q[2],q[1];\nt q[1];\ncx q[0],q[4];\nh q[2];\ncx q[4],q[0];\nt q[1];\ncx q[4],q[0];\nh q[0];\ncx q[0],q[4];\nh q[2];\ncx q[1],q[3];\nz q[4];\ncx q[0],q[4];\nx q[0];\ncx q[2],q[4];\nz q[3];\ncx q[1],q[3];\nx q[1];\ncx q[0],q[4];\nx q[4];\ncx q[1],q[3];\ns q[0];\ncx q[0],q[4];\ns q[4];\ncx q[0],q[4];\nh q[1];\ncx q[1],q[2];",
+    "observable": "ZIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "vanilla",
+    "perf_exp_val": 0.0
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('725155513f694a79b194c5170b072e85', 'ZIIII')": 0.002900000000000043
+      }
+    }
+  },
+  "times": {
+    "time_total": 1.9385496560717002,
+    "time_execution": 1.9385496560717002
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 5,
+      "depth": 19,
+      "num_gates": 40,
+      "2q_depth": 13,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "x": 6,
+        "h": 5,
+        "s": 4,
+        "t": 3,
+        "z": 2
+      }
+    },
+    "counts": {
+      "10101": 70,
+      "00010": 65,
+      "11000": 65,
+      "10001": 468,
+      "11010": 472,
+      "00101": 152,
+      "01001": 78,
+      "01101": 464,
+      "01011": 469,
+      "11101": 1788,
+      "00111": 1817,
+      "00011": 131,
+      "01010": 1831,
+      "10000": 1861,
+      "10110": 1788,
+      "11100": 459,
+      "10010": 153,
+      "00000": 492,
+      "11001": 165,
+      "11110": 48,
+      "11011": 1879,
+      "11111": 133,
+      "01110": 136,
+      "10111": 463,
+      "10100": 132,
+      "00001": 1771,
+      "00110": 499,
+      "01100": 1824,
+      "01000": 133,
+      "10011": 61,
+      "01111": 62,
+      "00100": 71
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('725155513f694a79b194c5170b072e85', 'ZIIII')": 0.002900000000000043
+      }
+    }
+  },
+  "shots_executed": 20000,
+  "distance_to_noisy_vanilla": 0.002900000000000043
+}

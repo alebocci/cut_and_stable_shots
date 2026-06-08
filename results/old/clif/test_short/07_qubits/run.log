@@ -1,0 +1,53 @@
+========================================================================
+CUTTABLE CIRCUIT BENCHMARK RUN REPORT
+Timestamp : 2026-05-22 11:50:45
+========================================================================
+
+DESIGN
+------------------------------------------------------------------------
+  Input        : valid_circuits.pkl produced by generate_and_cut.py
+  Cut strategy : find_and_place_cuts + CutStrategy(min_free_wires=2)
+  Ground truth : PennyLane default.qubit statevector (shots=None)
+  Reconstruction: qcut_processing_fn (tensor contraction)
+  Observable   : per-circuit Pauli string stored in CircuitSpec.observable
+  Error        : |perf_exp_val - result|
+
+CONFIGURATION
+------------------------------------------------------------------------
+  Shots (B)                 : 30000
+  Noisy backend             : 'aer.fake_torino'
+  Ideal backend             : 'aer.perfect'
+  Simulator seed            : 42
+  Output dir                : PosixPath('results/clif/test_short/07_qubits')
+  2q-gate alpha             : 0.8
+  Incr. batch shots         : 50
+  Incr. threshold           : 0.01
+  Incr. offset              : 3
+  Incr. stability k         : 3000
+  Incr. stopping criterion  : 'ewma'
+  Incr. distance metric     : 'tvd'
+  Incr. window size         : 3
+  Incr. EWMA alpha          : 0.5
+  Selected modes            : noisy_vanilla, cut_divided_budget, cut_qubit_prop, cut_incremental_budget, cut_incremental_qubit_prop
+
+SUMMARY
+------------------------------------------------------------------------
+Total: 10  ok: 10  failed: 0
+
+RESULTS BY CIRCUIT
+------------------------------------------------------------------------
+  7q / 0_Clifford+T_004
+    ✓ [   3.3s]  noisy_vanilla
+    ✓ [ 111.0s]  cut_divided_budget
+    ✓ [  91.9s]  cut_qubit_prop
+    ✓ [1734.1s]  cut_incremental_budget
+    ✓ [1846.7s]  cut_incremental_qubit_prop
+
+  7q / 1_Clifford+T_022
+    ✓ [   2.4s]  noisy_vanilla
+    ✓ [  93.2s]  cut_divided_budget
+    ✓ [ 105.6s]  cut_qubit_prop
+    ✓ [1777.6s]  cut_incremental_budget
+    ✓ [1657.9s]  cut_incremental_qubit_prop
+
+========================================================================

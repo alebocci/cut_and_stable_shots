@@ -1,0 +1,381 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[11];\ns q[7];\ncx q[7],q[8];\nh q[1];\ncx q[2],q[1];\ns q[5];\ncx q[1],q[2];\nx q[0];\ncx q[5],q[7];\nz q[10];\ncx q[7],q[10];\nt q[3];\ncx q[0],q[2];\ns q[5];\ncx q[4],q[0];\nx q[7];\ncx q[0],q[3];\nz q[1];\ncx q[4],q[10];\nh q[1];\ncx q[6],q[10];\nh q[2];\ncx q[0],q[3];\nh q[5];\ncx q[5],q[2];\ns q[2];\ncx q[2],q[0];\nh q[2];\ncx q[1],q[2];\nt q[2];\ncx q[6],q[5];\nz q[1];\ncx q[3],q[1];\nt q[10];\ncx q[0],q[3];\nt q[3];\ncx q[4],q[3];\nz q[9];\ncx q[3],q[0];\nt q[6];\ncx q[5],q[9];",
+    "observable": "ZIIIIIIIIII",
+    "shots": 20000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_torino"
+      ]
+    ],
+    "operation": "cc_incremental_budget",
+    "perf_exp_val": 0.9999999999999992,
+    "shots_allocation": "equal_split_budget_incremental",
+    "incremental_batch_shots": 50,
+    "incremental_threshold": 0.03,
+    "incremental_offset": 2,
+    "incremental_stability_k": 3,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('cbbb5c86481a23b6536d3c057b5b00d3', 'ZIIIIIIIIII')": 1.0000000000000002
+      }
+    }
+  },
+  "times": {
+    "time_total": 526.3121044310974,
+    "time_cutting": 8.74130055308342e-05,
+    "time_execution": 526.311295559979,
+    "time_sew": 0.0007065570680424571
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 11,
+      "depth": 16,
+      "num_gates": 40,
+      "2q_depth": 12,
+      "num_1q_gates": 20,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "h": 5,
+        "t": 5,
+        "s": 4,
+        "z": 4,
+        "x": 2
+      }
+    },
+    "cut_info": {
+      "num_fragments": 2,
+      "fragments_qubits": [
+        10,
+        1
+      ],
+      "num_variations": 7,
+      "variations": [
+        4,
+        3
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 2,
+      "num_variants": 8,
+      "variations_per_fragment": [
+        4,
+        3
+      ],
+      "total_allocated_shots": 20000,
+      "total_executed_shots": 2000,
+      "min_allocated_shots_per_variant": 2500,
+      "max_allocated_shots_per_variant": 2500,
+      "min_executed_shots_per_variant": 250,
+      "max_executed_shots_per_variant": 250,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')",
+          "fragment_hash": "3f884f454f98aebea21c4fb2fb476d1c",
+          "observable": "IIIIIZIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 1,
+          "variant_key": "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')",
+          "fragment_hash": "dd0b4a803b5691677744b533f4e6b326",
+          "observable": "IIIIIZIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 2,
+          "variant_key": "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')",
+          "fragment_hash": "7290ee54f639b8209ee6788ee98a68e5",
+          "observable": "IIIIIZIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 3,
+          "variant_key": "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')",
+          "fragment_hash": "3c4ea94c28533ce87b315545bbadb28f",
+          "observable": "IIIIIZIIII",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('569630169bf712ae4220e83d51bac71b', 'I')",
+          "fragment_hash": "569630169bf712ae4220e83d51bac71b",
+          "observable": "I",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 4,
+          "variant_key": "('569630169bf712ae4220e83d51bac71b', 'Z')",
+          "fragment_hash": "569630169bf712ae4220e83d51bac71b",
+          "observable": "Z",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 5,
+          "variant_key": "('569630169bf712ae4220e83d51bac71b', 'X')",
+          "fragment_hash": "569630169bf712ae4220e83d51bac71b",
+          "observable": "X",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        },
+        {
+          "variant_index": 6,
+          "variant_key": "('569630169bf712ae4220e83d51bac71b', 'Y')",
+          "fragment_hash": "569630169bf712ae4220e83d51bac71b",
+          "observable": "Y",
+          "allocated_shots": 2500,
+          "executed_shots": 250,
+          "iterations": 5
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "3f884f454f98aebea21c4fb2fb476d1c",
+        "observables": [
+          "IIIIIZIIII",
+          "IIIIIZIIII",
+          "IIIIIZIIII",
+          "IIIIIZIIII"
+        ],
+        "fragment_stats": {
+          "qubits": 10,
+          "depth": 16,
+          "num_gates": 38,
+          "2q_depth": 12,
+          "num_1q_gates": 19,
+          "num_2q_gates": 19,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 19,
+            "h": 5,
+            "t": 5,
+            "s": 3,
+            "z": 3,
+            "x": 2,
+            "id": 1
+          }
+        }
+      },
+      {
+        "fragment_hash": "569630169bf712ae4220e83d51bac71b",
+        "observables": [
+          "I",
+          "X",
+          "Y"
+        ],
+        "fragment_stats": {
+          "qubits": 1,
+          "depth": 1,
+          "num_gates": 1,
+          "2q_depth": 0,
+          "num_1q_gates": 1,
+          "num_2q_gates": 0,
+          "num_measurements": 0,
+          "gates": {
+            "s": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')": {
+        "0010001100": 10,
+        "0010010001": 50,
+        "0010011011": 5,
+        "0000011101": 10,
+        "0110001101": 5,
+        "0010011001": 20,
+        "0010000101": 20,
+        "0010001101": 35,
+        "0011010001": 5,
+        "0011000101": 5,
+        "0000010101": 30,
+        "0000000001": 30,
+        "0010001111": 5,
+        "0000000101": 5,
+        "0000001001": 10,
+        "0000010001": 5
+      },
+      "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')": {
+        "0001000100": 5,
+        "0011001101": 5,
+        "0001011101": 5,
+        "0010010001": 5,
+        "0111001100": 5,
+        "0001010001": 5,
+        "0011010001": 10,
+        "0011011010": 5,
+        "0000000000": 5,
+        "0001000000": 25,
+        "0011010000": 40,
+        "0001011100": 5,
+        "0011001100": 40,
+        "0011000100": 25,
+        "0011011000": 20,
+        "0001010100": 30,
+        "0001001000": 5,
+        "0000001001": 5,
+        "0011001110": 5
+      },
+      "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')": {
+        "0000011101": 10,
+        "0010010001": 10,
+        "1010011001": 5,
+        "0001010100": 10,
+        "0000000001": 20,
+        "0011000101": 5,
+        "0000010101": 10,
+        "1000010100": 5,
+        "0001001000": 10,
+        "0001000001": 5,
+        "1011011000": 5,
+        "0011011000": 15,
+        "0010011001": 5,
+        "0011001101": 5,
+        "0000010100": 5,
+        "0010001101": 10,
+        "0011010001": 5,
+        "0000000000": 5,
+        "0000001001": 15,
+        "0010001001": 5,
+        "0000011100": 5,
+        "0010000100": 5,
+        "0011010000": 10,
+        "0010000101": 10,
+        "0011011001": 5,
+        "0001000100": 5,
+        "0001000000": 30,
+        "0010011000": 5,
+        "0011001100": 5,
+        "0011000100": 5
+      },
+      "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')": {
+        "0000011101": 10,
+        "0010010001": 10,
+        "1010011001": 5,
+        "0001010100": 10,
+        "0000000001": 20,
+        "0011000101": 5,
+        "0000010101": 10,
+        "1000010100": 5,
+        "0001001000": 10,
+        "0001000001": 5,
+        "1011011000": 5,
+        "0011011000": 15,
+        "0010011001": 5,
+        "0011001101": 5,
+        "0000010100": 5,
+        "0010001101": 10,
+        "0011010001": 5,
+        "0000000000": 5,
+        "0000001001": 15,
+        "0010001001": 5,
+        "0000011100": 5,
+        "0010000100": 5,
+        "0011010000": 10,
+        "0010000101": 10,
+        "0011011001": 5,
+        "0001000100": 5,
+        "0001000000": 30,
+        "0010011000": 5,
+        "0011001100": 5,
+        "0011000100": 5
+      },
+      "('569630169bf712ae4220e83d51bac71b', 'I')": {
+        "1": 20,
+        "0": 230
+      },
+      "('569630169bf712ae4220e83d51bac71b', 'Z')": {
+        "1": 20,
+        "0": 230
+      },
+      "('569630169bf712ae4220e83d51bac71b', 'X')": {
+        "1": 110,
+        "0": 140
+      },
+      "('569630169bf712ae4220e83d51bac71b', 'Y')": {
+        "1": 110,
+        "0": 140
+      }
+    },
+    "variant_exp_values": {
+      "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')": 1.0000000000000002,
+      "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')": 1.0,
+      "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')": 1.0000000000000002,
+      "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')": 1.0000000000000002,
+      "('569630169bf712ae4220e83d51bac71b', 'I')": [
+        1.0,
+        0.8400000000000001
+      ],
+      "('569630169bf712ae4220e83d51bac71b', 'X')": 0.12000000000000005,
+      "('569630169bf712ae4220e83d51bac71b', 'Y')": 0.12000000000000005
+    },
+    "variant_shots_budget": {
+      "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')": 2500,
+      "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')": 2500,
+      "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')": 2500,
+      "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')": 2500,
+      "('569630169bf712ae4220e83d51bac71b', 'I')": 2500,
+      "('569630169bf712ae4220e83d51bac71b', 'Z')": 2500,
+      "('569630169bf712ae4220e83d51bac71b', 'X')": 2500,
+      "('569630169bf712ae4220e83d51bac71b', 'Y')": 2500
+    },
+    "variant_shots_executed": {
+      "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')": 250,
+      "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')": 250,
+      "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')": 250,
+      "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')": 250,
+      "('569630169bf712ae4220e83d51bac71b', 'I')": 250,
+      "('569630169bf712ae4220e83d51bac71b', 'Z')": 250,
+      "('569630169bf712ae4220e83d51bac71b', 'X')": 250,
+      "('569630169bf712ae4220e83d51bac71b', 'Y')": 250
+    },
+    "variant_iterations": {
+      "('3f884f454f98aebea21c4fb2fb476d1c', 'IIIIIZIIII')": 5,
+      "('dd0b4a803b5691677744b533f4e6b326', 'IIIIIZIIII')": 5,
+      "('7290ee54f639b8209ee6788ee98a68e5', 'IIIIIZIIII')": 5,
+      "('3c4ea94c28533ce87b315545bbadb28f', 'IIIIIZIIII')": 5,
+      "('569630169bf712ae4220e83d51bac71b', 'I')": 5,
+      "('569630169bf712ae4220e83d51bac71b', 'Z')": 5,
+      "('569630169bf712ae4220e83d51bac71b', 'X')": 5,
+      "('569630169bf712ae4220e83d51bac71b', 'Y')": 5
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 50,
+      "threshold": 0.03,
+      "offset": 2,
+      "stability_k": 3
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_torino": {
+        "('cbbb5c86481a23b6536d3c057b5b00d3', 'ZIIIIIIIIII')": 9.992007221626409e-16
+      }
+    }
+  },
+  "shots_executed": 2000,
+  "distance_to_noisy_vanilla": 0.3309000000000003
+}
