@@ -4,11 +4,11 @@ set -uo pipefail
 QUBITS=(10 11 12 13 14 15 16)
 MAX_JOBS=7   # use 7 to run all at once; lower it, e.g. 3, if RAM/CPU is tight
 
-SHOTS=5000
-BACKEND="aer.fake_torino"
+SHOTS=20000
+BACKEND="aer.fake_kawasaki"
 SEED=42
 CONFIG="configs/ewma_tvd_002.json"
-ROOT_OUT="results/new/ewma_5k_torino_01"
+ROOT_OUT="results/new/ewma_20k_kawasaki_01"
 
 mkdir -p logs
 
