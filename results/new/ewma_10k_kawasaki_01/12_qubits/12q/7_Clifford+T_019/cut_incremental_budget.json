@@ -1,0 +1,287 @@
+{
+  "params": {
+    "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[12];\nh q[10];\ncx q[6],q[2];\nx q[4];\ncx q[9],q[2];\nt q[9];\ncx q[10],q[8];\nt q[1];\ncx q[9],q[3];\nh q[9];\ncx q[9],q[7];\nt q[1];\ncx q[9],q[1];\ns q[9];\ncx q[4],q[8];\nh q[3];\ncx q[0],q[7];\nz q[10];\ncx q[10],q[0];\ns q[10];\ncx q[6],q[4];\ns q[9];\ncx q[8],q[10];\nz q[2];\ncx q[9],q[3];\ns q[9];\ncx q[11],q[10];\ns q[9];\ncx q[2],q[10];\nt q[2];\ncx q[3],q[4];\nz q[1];\ncx q[7],q[2];\nt q[2];\ncx q[8],q[2];\nz q[3];\ncx q[6],q[7];\nx q[3];\ncx q[0],q[6];\ns q[8];\ncx q[8],q[11];\nid q[5];",
+    "observable": "ZIIIIIIIIIII",
+    "shots": 10000,
+    "backends": [
+      [
+        "ibm_aer",
+        "aer.fake_kawasaki"
+      ]
+    ],
+    "operation": "cc_incremental_budget",
+    "perf_exp_val": 0.0,
+    "shots_allocation": "equal_split_budget_incremental",
+    "incremental_batch_shots": 50,
+    "incremental_threshold": 0.03,
+    "incremental_offset": 3,
+    "incremental_stability_k": 3,
+    "incremental_stopping_criterion": "ewma",
+    "incremental_distance_metric": "tvd",
+    "incremental_window_size": 3,
+    "incremental_ewma_alpha": 0.5,
+    "gate2q_alpha": 0.8
+  },
+  "results": {
+    "ibm_aer": {
+      "aer.fake_kawasaki": {
+        "('7f82bddc419dcef7871c93678ee6e507', 'ZIIIIIIIIIII')": -0.021935483870967734
+      }
+    }
+  },
+  "times": {
+    "time_total": 43.433106790995225,
+    "time_cutting": 4.9004011088982224e-05,
+    "time_execution": 43.43266333601787,
+    "time_sew": 0.0003836499818135053
+  },
+  "stats": {
+    "circuit_stats": {
+      "qubits": 12,
+      "depth": 18,
+      "num_gates": 41,
+      "2q_depth": 12,
+      "num_1q_gates": 21,
+      "num_2q_gates": 20,
+      "num_measurements": 0,
+      "gates": {
+        "cx": 20,
+        "s": 6,
+        "t": 5,
+        "z": 4,
+        "h": 3,
+        "x": 2,
+        "id": 1
+      }
+    },
+    "cut_info": {
+      "num_fragments": 1,
+      "fragments_qubits": [
+        11
+      ],
+      "num_variations": 1,
+      "variations": [
+        1
+      ]
+    },
+    "cut_statistics": {
+      "num_fragments": 1,
+      "num_variants": 1,
+      "variations_per_fragment": [
+        1
+      ],
+      "total_allocated_shots": 10000,
+      "total_executed_shots": 1550,
+      "min_allocated_shots_per_variant": 10000,
+      "max_allocated_shots_per_variant": 10000,
+      "min_executed_shots_per_variant": 1550,
+      "max_executed_shots_per_variant": 1550,
+      "shots_per_variant": [
+        {
+          "variant_index": 0,
+          "variant_key": "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')",
+          "fragment_hash": "4e8024eb20f54119957d1aa2783eba97",
+          "observable": "IIIIIIIIIZI",
+          "allocated_shots": 10000,
+          "executed_shots": 1550,
+          "iterations": 31
+        }
+      ]
+    },
+    "cut_output": [
+      {
+        "fragment_hash": "4e8024eb20f54119957d1aa2783eba97",
+        "observables": [
+          "IIIIIIIIIZI"
+        ],
+        "fragment_stats": {
+          "qubits": 11,
+          "depth": 18,
+          "num_gates": 38,
+          "2q_depth": 12,
+          "num_1q_gates": 18,
+          "num_2q_gates": 20,
+          "num_measurements": 0,
+          "gates": {
+            "cx": 20,
+            "s": 6,
+            "t": 5,
+            "h": 3,
+            "z": 3,
+            "x": 1
+          }
+        }
+      }
+    ],
+    "variant_counts": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": {
+        "01111101111": 1,
+        "10010000101": 3,
+        "11010100101": 3,
+        "00010001011": 1,
+        "01000000011": 17,
+        "11111110001": 6,
+        "10101111001": 144,
+        "01101011111": 136,
+        "01010001011": 18,
+        "10111110001": 143,
+        "10111111001": 26,
+        "10011110001": 3,
+        "01010000011": 149,
+        "10000101101": 123,
+        "01000001011": 135,
+        "01111010111": 142,
+        "00010000011": 3,
+        "10010100101": 150,
+        "01111010110": 8,
+        "01111011110": 1,
+        "01101011110": 5,
+        "10101101001": 1,
+        "11010001101": 1,
+        "10101110001": 24,
+        "01010010011": 4,
+        "10000100101": 20,
+        "01011000010": 1,
+        "10010110101": 7,
+        "01111000111": 5,
+        "00111010111": 3,
+        "01000001010": 7,
+        "10000100100": 1,
+        "10010101101": 12,
+        "11111010111": 5,
+        "10111110000": 8,
+        "01111011111": 30,
+        "11101011111": 4,
+        "10000001101": 3,
+        "10101011001": 2,
+        "00101111111": 1,
+        "11101110001": 2,
+        "10111010001": 6,
+        "01101111111": 4,
+        "10111110101": 4,
+        "00000101101": 6,
+        "01111110111": 7,
+        "10000101100": 7,
+        "10101111000": 5,
+        "10110100101": 3,
+        "01101010111": 21,
+        "11101010111": 1,
+        "01101001111": 5,
+        "10000101111": 1,
+        "01110000010": 1,
+        "11010000010": 1,
+        "01000011011": 4,
+        "01110000011": 3,
+        "10111100001": 1,
+        "10010101001": 2,
+        "00101110001": 2,
+        "01010100011": 4,
+        "11000101101": 2,
+        "01000100011": 1,
+        "01101010110": 3,
+        "00000100101": 2,
+        "00101111001": 4,
+        "10111111011": 1,
+        "01011010111": 1,
+        "01010000001": 2,
+        "01010000111": 1,
+        "01010000010": 5,
+        "01000101011": 5,
+        "01100001011": 2,
+        "01111010101": 3,
+        "10110111001": 1,
+        "10101010001": 3,
+        "01101000111": 2,
+        "10000111101": 8,
+        "11000000010": 1,
+        "01111010011": 1,
+        "10001111001": 1,
+        "11111011111": 2,
+        "01001001011": 2,
+        "10000110101": 1,
+        "00010100101": 1,
+        "01101011101": 2,
+        "10010100100": 4,
+        "10010100111": 2,
+        "01000000010": 4,
+        "11000001011": 3,
+        "10010101100": 1,
+        "01100011111": 1,
+        "11001010111": 1,
+        "10100101101": 3,
+        "11010000011": 4,
+        "10011111001": 1,
+        "01000101010": 1,
+        "10011010001": 1,
+        "00000101100": 1,
+        "11000000011": 1,
+        "01011011111": 1,
+        "01001000001": 1,
+        "10111011001": 1,
+        "10000101001": 1,
+        "10000000101": 1,
+        "00111110001": 1,
+        "01010101011": 1,
+        "01111001111": 1,
+        "00010100111": 1,
+        "10101111011": 1,
+        "11101101001": 1,
+        "11000100101": 1,
+        "01101011011": 1,
+        "01101110111": 1,
+        "01100101011": 1,
+        "10101100001": 1,
+        "01010011011": 1,
+        "11101111001": 1,
+        "10101111101": 1
+      }
+    },
+    "variant_exp_values": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": -0.021935483870967734
+    },
+    "variant_shots_budget": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": 10000
+    },
+    "variant_shots_executed": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": 1550
+    },
+    "variant_iterations": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": 31
+    },
+    "variant_stopping_info": {
+      "('4e8024eb20f54119957d1aa2783eba97', 'IIIIIIIIIZI')": {
+        "criterion": "ewma",
+        "distances": [
+          0.02671087533156499,
+          0.0214074074074074,
+          0.020391705069124414
+        ],
+        "aggregate": 0.022225423219305304,
+        "threshold": 0.03,
+        "offset": 3,
+        "window": 3,
+        "alpha": 0.5
+      }
+    },
+    "incremental": {
+      "initial_batch_shots": null,
+      "batch_shots": 50,
+      "threshold": 0.03,
+      "offset": 3,
+      "stability_k": 3,
+      "stopping_criterion": "ewma",
+      "distance_metric": "tvd",
+      "window_size": 3,
+      "ewma_alpha": 0.5
+    }
+  },
+  "absolute_error": {
+    "ibm_aer": {
+      "aer.fake_kawasaki": {
+        "('7f82bddc419dcef7871c93678ee6e507', 'ZIIIIIIIIIII')": 0.021935483870967734
+      }
+    }
+  },
+  "shots_executed": 1550,
+  "distance_to_noisy_vanilla": 0.0401354838709677
+}
