@@ -15,9 +15,9 @@ BACKENDS=(
 MAX_JOBS=84   # max number of parallel jobs
 
 SEED=42
-CONFIG="configs/ewma_tvd_002.json"
+CONFIG="configs/stable_shots.json"
 
-ROOT_OUT="results/new/ewma_runs"
+ROOT_OUT="results/new/stable_shots_runs"
 
 mkdir -p logs
 
@@ -26,12 +26,10 @@ run_one() {
   local shots="$2"
   local backend="$3"
 
-  # Create a clean backend label for paths/logs
-  local backend_label="${backend##*.}"      # fake_kawasaki
-  backend_label="${backend_label#fake_}"    # kawasaki
+  local backend_label="${backend##*.}"
+  backend_label="${backend_label#fake_}"
 
   local out_dir="${ROOT_OUT}/${shots}_shots/${backend_label}/${q}_qubits"
-  local log_file="logs/clif${q}_${shots}_${backend_label}.log"
 
   mkdir -p "$out_dir"
 
@@ -51,6 +49,7 @@ run_one() {
 }
 
 running=0
+failed=0
 
 for shots in "${SHOTS_LIST[@]}"; do
   for backend in "${BACKENDS[@]}"; do
@@ -65,7 +64,7 @@ for shots in "${SHOTS_LIST[@]}"; do
       ((running++))
 
       if (( running >= MAX_JOBS )); then
-        wait -n
+        wait -n || failed=1
         ((running--))
       fi
 
@@ -73,4 +72,24 @@ for shots in "${SHOTS_LIST[@]}"; do
   done
 done
 
-wait
+while (( running > 0 )); do
+  wait -n || failed=1
+  ((running--))
+done
+
+if (( failed != 0 )); then
+  echo "At least one job failed. Skipping git add/commit/push."
+  exit 1
+fi
+
+echo "All jobs finished successfully."
+
+# Git add, commit and push new results/logs
+git add "$ROOT_OUT" logs
+
+if git diff --cached --quiet; then
+  echo "No new files to commit."
+else
+  git commit -m "Add stable shots runs for multiple shots and backends"
+  git push
+fi
