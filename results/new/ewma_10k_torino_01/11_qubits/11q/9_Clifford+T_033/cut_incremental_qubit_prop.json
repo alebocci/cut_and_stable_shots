@@ -2,7 +2,7 @@
   "params": {
     "circuits": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[11];\nt q[5];\ncx q[4],q[2];\nx q[7];\ncx q[8],q[6];\nx q[6];\ncx q[6],q[8];\nz q[9];\ncx q[1],q[7];\nt q[6];\ncx q[8],q[9];\nx q[6];\ncx q[4],q[9];\nx q[2];\ncx q[5],q[4];\nt q[9];\ncx q[5],q[4];\ns q[2];\ncx q[4],q[5];\ns q[5];\ncx q[7],q[1];\nx q[2];\ncx q[5],q[4];\nh q[4];\ncx q[5],q[4];\nt q[4];\ncx q[6],q[1];\nz q[5];\ncx q[3],q[8];\nx q[7];\ncx q[7],q[9];\nt q[9];\ncx q[10],q[7];\nt q[8];\ncx q[4],q[5];\nz q[0];\ncx q[0],q[4];\nz q[5];\ncx q[9],q[3];\ns q[0];\ncx q[6],q[9];",
     "observable": "ZIIIIIIIIII",
-    "shots": 5000,
+    "shots": 10000,
     "backends": [
       [
         "ibm_aer",
@@ -25,15 +25,15 @@
   "results": {
     "ibm_aer": {
       "aer.fake_torino": {
-        "('c075e2da6f80b9004a87156de9c0028f', 'ZIIIIIIIIII')": 0.893306094863603
+        "('c075e2da6f80b9004a87156de9c0028f', 'ZIIIIIIIIII')": 0.8922936480186477
       }
     }
   },
   "times": {
-    "time_total": 211.71697689499706,
-    "time_cutting": 0.0002675456926226616,
-    "time_execution": 211.71543873194605,
-    "time_sew": 0.0012575150467455387
+    "time_total": 296.30403912698966,
+    "time_cutting": 0.00011900998651981354,
+    "time_execution": 296.3026716019958,
+    "time_sew": 0.0012401150015648454
   },
   "stats": {
     "circuit_stats": {
@@ -72,11 +72,11 @@
         4,
         3
       ],
-      "total_allocated_shots": 5000,
-      "total_executed_shots": 4052,
-      "min_allocated_shots_per_variant": 313,
-      "max_allocated_shots_per_variant": 937,
-      "min_executed_shots_per_variant": 313,
+      "total_allocated_shots": 10000,
+      "total_executed_shots": 5050,
+      "min_allocated_shots_per_variant": 625,
+      "max_allocated_shots_per_variant": 1875,
+      "min_executed_shots_per_variant": 500,
       "max_executed_shots_per_variant": 800,
       "shots_per_variant": [
         {
@@ -84,43 +84,43 @@
           "variant_key": "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')",
           "fragment_hash": "3c6e41bbd2b7880b62339b554f9cfd61",
           "observable": "IIZ",
-          "allocated_shots": 313,
-          "executed_shots": 313,
-          "iterations": 7
+          "allocated_shots": 625,
+          "executed_shots": 600,
+          "iterations": 12
         },
         {
           "variant_index": 1,
           "variant_key": "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')",
           "fragment_hash": "cfb4b7d6c4b772068503b7e8483fd184",
           "observable": "IIZ",
-          "allocated_shots": 313,
-          "executed_shots": 313,
-          "iterations": 7
+          "allocated_shots": 625,
+          "executed_shots": 500,
+          "iterations": 10
         },
         {
           "variant_index": 2,
           "variant_key": "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')",
           "fragment_hash": "6042b425ac7cd906fc6e8ccdb9ef6388",
           "observable": "IIZ",
-          "allocated_shots": 313,
-          "executed_shots": 313,
-          "iterations": 7
+          "allocated_shots": 625,
+          "executed_shots": 550,
+          "iterations": 11
         },
         {
           "variant_index": 3,
           "variant_key": "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')",
           "fragment_hash": "e6523e2c093dce5a03c29eed53be1435",
           "observable": "IIZ",
-          "allocated_shots": 313,
-          "executed_shots": 313,
-          "iterations": 7
+          "allocated_shots": 625,
+          "executed_shots": 600,
+          "iterations": 12
         },
         {
           "variant_index": 4,
           "variant_key": "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')",
           "fragment_hash": "c7087949f584567cd7dfa5c63fe24248",
           "observable": "IIIIIIIII",
-          "allocated_shots": 937,
+          "allocated_shots": 1875,
           "executed_shots": 750,
           "iterations": 15
         },
@@ -129,7 +129,7 @@
           "variant_key": "('c7087949f584567cd7dfa5c63fe24248', 'ZIIIIIIII')",
           "fragment_hash": "c7087949f584567cd7dfa5c63fe24248",
           "observable": "ZIIIIIIII",
-          "allocated_shots": 937,
+          "allocated_shots": 1875,
           "executed_shots": 600,
           "iterations": 12
         },
@@ -138,7 +138,7 @@
           "variant_key": "('c7087949f584567cd7dfa5c63fe24248', 'XIIIIIIII')",
           "fragment_hash": "c7087949f584567cd7dfa5c63fe24248",
           "observable": "XIIIIIIII",
-          "allocated_shots": 937,
+          "allocated_shots": 1875,
           "executed_shots": 800,
           "iterations": 16
         },
@@ -147,7 +147,7 @@
           "variant_key": "('c7087949f584567cd7dfa5c63fe24248', 'YIIIIIIII')",
           "fragment_hash": "c7087949f584567cd7dfa5c63fe24248",
           "observable": "YIIIIIIII",
-          "allocated_shots": 937,
+          "allocated_shots": 1875,
           "executed_shots": 650,
           "iterations": 13
         }
@@ -207,41 +207,43 @@
     ],
     "variant_counts": {
       "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": {
-        "101": 2,
-        "001": 31,
-        "111": 9,
-        "011": 105,
-        "010": 32,
-        "000": 127,
-        "100": 7
+        "101": 3,
+        "001": 65,
+        "111": 16,
+        "011": 222,
+        "010": 53,
+        "000": 226,
+        "100": 12,
+        "110": 3
       },
       "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": {
-        "110": 5,
-        "101": 4,
-        "011": 29,
-        "001": 117,
-        "000": 29,
-        "010": 129
+        "110": 9,
+        "101": 8,
+        "011": 49,
+        "001": 189,
+        "000": 42,
+        "010": 202,
+        "111": 1
       },
       "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": {
-        "100": 6,
-        "111": 7,
-        "011": 60,
-        "001": 91,
-        "000": 70,
-        "010": 72,
-        "101": 5,
-        "110": 2
+        "100": 10,
+        "111": 8,
+        "011": 117,
+        "001": 144,
+        "000": 127,
+        "010": 126,
+        "101": 11,
+        "110": 7
       },
       "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": {
-        "100": 5,
-        "101": 2,
-        "001": 71,
-        "111": 8,
-        "011": 71,
-        "000": 82,
-        "010": 70,
-        "110": 4
+        "100": 9,
+        "101": 8,
+        "001": 144,
+        "111": 13,
+        "011": 140,
+        "000": 143,
+        "010": 135,
+        "110": 8
       },
       "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": {
         "011111001": 6,
@@ -348,10 +350,10 @@
       }
     },
     "variant_exp_values": {
-      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 0.8849840255591055,
-      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 0.9424920127795527,
-      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 0.8722044728434505,
-      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 0.8785942492012779,
+      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 0.8866666666666666,
+      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 0.928,
+      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 0.8690909090909091,
+      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 0.8733333333333333,
       "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": [
         0.9999999999999998,
         0.6400000000000001
@@ -360,30 +362,30 @@
       "('c7087949f584567cd7dfa5c63fe24248', 'YIIIIIIII')": -0.033846153846153824
     },
     "variant_shots_budget": {
-      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 313,
-      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 313,
-      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 313,
-      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 313,
-      "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": 937,
-      "('c7087949f584567cd7dfa5c63fe24248', 'ZIIIIIIII')": 937,
-      "('c7087949f584567cd7dfa5c63fe24248', 'XIIIIIIII')": 937,
-      "('c7087949f584567cd7dfa5c63fe24248', 'YIIIIIIII')": 937
+      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 625,
+      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 625,
+      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 625,
+      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 625,
+      "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": 1875,
+      "('c7087949f584567cd7dfa5c63fe24248', 'ZIIIIIIII')": 1875,
+      "('c7087949f584567cd7dfa5c63fe24248', 'XIIIIIIII')": 1875,
+      "('c7087949f584567cd7dfa5c63fe24248', 'YIIIIIIII')": 1875
     },
     "variant_shots_executed": {
-      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 313,
-      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 313,
-      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 313,
-      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 313,
+      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 600,
+      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 500,
+      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 550,
+      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 600,
       "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": 750,
       "('c7087949f584567cd7dfa5c63fe24248', 'ZIIIIIIII')": 600,
       "('c7087949f584567cd7dfa5c63fe24248', 'XIIIIIIII')": 800,
       "('c7087949f584567cd7dfa5c63fe24248', 'YIIIIIIII')": 650
     },
     "variant_iterations": {
-      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 7,
-      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 7,
-      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 7,
-      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 7,
+      "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": 12,
+      "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": 10,
+      "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": 11,
+      "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": 12,
       "('c7087949f584567cd7dfa5c63fe24248', 'IIIIIIIII')": 15,
       "('c7087949f584567cd7dfa5c63fe24248', 'ZIIIIIIII')": 12,
       "('c7087949f584567cd7dfa5c63fe24248', 'XIIIIIIII')": 16,
@@ -393,11 +395,11 @@
       "('3c6e41bbd2b7880b62339b554f9cfd61', 'IIZ')": {
         "criterion": "ewma",
         "distances": [
-          0.03600000000000001,
-          0.023333333333333314,
-          0.023817891373801917
+          0.008285714285714289,
+          0.022954545454545457,
+          0.013888888888888892
         ],
-        "aggregate": 0.026742279020234287,
+        "aggregate": 0.014754509379509381,
         "threshold": 0.03,
         "offset": 3,
         "window": 3,
@@ -406,11 +408,11 @@
       "('cfb4b7d6c4b772068503b7e8483fd184', 'IIZ')": {
         "criterion": "ewma",
         "distances": [
-          0.09399999999999997,
-          0.033333333333333354,
-          0.032444089456869
+          0.01900000000000001,
+          0.011111111111111129,
+          0.006571428571428557
         ],
-        "aggregate": 0.04805537806176784,
+        "aggregate": 0.010813492063492063,
         "threshold": 0.03,
         "offset": 3,
         "window": 3,
@@ -419,11 +421,11 @@
       "('6042b425ac7cd906fc6e8ccdb9ef6388', 'IIZ')": {
         "criterion": "ewma",
         "distances": [
-          0.039999999999999994,
-          0.04333333333333334,
-          0.03884984025559105
+          0.021111111111111094,
+          0.02485714285714287,
+          0.03136363636363635
         ],
-        "aggregate": 0.040258253461128865,
+        "aggregate": 0.027173881673881666,
         "threshold": 0.03,
         "offset": 3,
         "window": 3,
@@ -432,11 +434,11 @@
       "('e6523e2c093dce5a03c29eed53be1435', 'IIZ')": {
         "criterion": "ewma",
         "distances": [
-          0.08600000000000001,
-          0.04333333333333334,
-          0.049792332268370626
+          0.010571428571428586,
+          0.02159090909090912,
+          0.020555555555555566
         ],
-        "aggregate": 0.05722949946751865,
+        "aggregate": 0.01831836219336221,
         "threshold": 0.03,
         "offset": 3,
         "window": 3,
@@ -510,10 +512,10 @@
   "absolute_error": {
     "ibm_aer": {
       "aer.fake_torino": {
-        "('c075e2da6f80b9004a87156de9c0028f', 'ZIIIIIIIIII')": 0.10669390513639676
+        "('c075e2da6f80b9004a87156de9c0028f', 'ZIIIIIIIIII')": 0.10770635198135203
       }
     }
   },
-  "shots_executed": 4052,
-  "distance_to_noisy_vanilla": 0.22490609486360325
+  "shots_executed": 5050,
+  "distance_to_noisy_vanilla": 0.2170936480186486
 }

@@ -8,7 +8,7 @@ SHOTS=5000
 BACKEND="aer.fake_kyoto"
 SEED=42
 CONFIG="configs/ewma_tvd_002.json"
-ROOT_OUT="results/new/ewma_10k_kyoto_01"
+ROOT_OUT="results/new/ewma_5k_kyoto_01"
 
 mkdir -p logs
 

@@ -8,7 +8,7 @@ SHOTS=5000
 BACKEND="aer.fake_sherbrooke"
 SEED=42
 CONFIG="configs/ewma_tvd_002.json"
-ROOT_OUT="results/new/ewma_10k_sherbroke_01"
+ROOT_OUT="results/new/ewma_5k_sherbroke_01"
 
 mkdir -p logs
 
