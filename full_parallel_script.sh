@@ -17,7 +17,7 @@ MAX_JOBS=84   # max number of parallel jobs
 SEED=42
 CONFIG="configs/stable_shots.json"
 
-ROOT_OUT="results/new/stable_shots_runs"
+ROOT_OUT="results/new/stable_shots_runs_01"
 
 mkdir -p logs
 
