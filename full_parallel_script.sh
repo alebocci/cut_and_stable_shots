@@ -40,7 +40,7 @@ run_one() {
     --shots "$shots" \
     --noisy-backend "$backend" \
     --seed-simulator "$SEED" \
-    --modes noisy_vanilla cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
+    --modes cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
     --incremental-config "$CONFIG" \
     --parallel-circuits 1 \
     --output-dir "$out_dir"
