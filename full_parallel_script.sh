@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-QUBITS=(15 16)
+QUBITS=(10 11 12 13 14 15 16)
 
 SHOTS_LIST=(5000 10000 20000)
 
@@ -16,7 +16,7 @@ BACKENDS=(
 # Parallelism
 # -------------------------------------------------------------------
 # Start conservatively. Increase only after checking RAM usage in logs.
-MAX_JOBS=3
+MAX_JOBS=10
 
 # -------------------------------------------------------------------
 # Resource gate: tune these values for your VM
@@ -27,14 +27,14 @@ MIN_FREE_RAM_GB=4
 # Estimated RAM needed before starting one more job.
 # The script starts a new job only if:
 # MemAvailable >= MIN_FREE_RAM_GB + MEM_RESERVE_PER_JOB_GB
-MEM_RESERVE_PER_JOB_GB=10
+MEM_RESERVE_PER_JOB_GB=7
 
 # Hard-ish per-job virtual memory limit.
 # This is inherited by each Python process.
 # If too low, Python may fail with MemoryError or allocation errors.
-MEM_LIMIT_PER_JOB_GB=6
+MEM_LIMIT_PER_JOB_GB=7
 
-MAX_LOAD_PER_CORE_CENTI=70      # 90 means 0.90 load per CPU core
+MAX_LOAD_PER_CORE_CENTI=75      # 90 means 0.90 load per CPU core
 RESOURCE_CHECK_INTERVAL=30      # seconds between checks
 RESOURCE_LOG_INTERVAL=120       # seconds between "waiting" messages
 
@@ -44,9 +44,9 @@ RESOURCE_LOG_INTERVAL=120       # seconds between "waiting" messages
 OOM_SCORE_ADJ=800
 
 SEED=42
-CONFIG="configs/stable_shots.json"
+CONFIG="configs/ewma_tvd_002.json"
 
-ROOT_OUT="results/new/stable_shots_runs_10-14q_no_vanilla"
+ROOT_OUT="results/new/ewma_tvd_002"
 
 mkdir -p logs
 

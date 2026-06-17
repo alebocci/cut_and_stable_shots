@@ -133,6 +133,12 @@ logger = logging.getLogger("cuttable-circuit-benchmark")
 
 FreqCounts = Dict[str, int]
 
+AER_SINGLE_THREAD_OPTIONS = {
+    "max_parallel_threads": 1,       # OpenMP CPU threads used by Aer
+    "max_parallel_experiments": 1,   # no parallel circuit/experiment execution
+    "max_parallel_shots": 1,         # no parallel shot execution
+}
+
 
 @dataclass
 class CircuitSpec:
@@ -297,10 +303,15 @@ def _resolve_fake_backend(fake_name: str):
 @functools.lru_cache(maxsize=None)
 def make_backend(backend_name: str) -> AerSimulator:
     if backend_name == "aer.perfect":
-        return AerSimulator()
+        return AerSimulator(**AER_SINGLE_THREAD_OPTIONS)
+
     if backend_name.startswith("aer.fake_"):
         fake = _resolve_fake_backend(backend_name[4:])
-        return AerSimulator(noise_model=NoiseModel.from_backend(fake))
+        return AerSimulator(
+            noise_model=NoiseModel.from_backend(fake),
+            **AER_SINGLE_THREAD_OPTIONS,
+        )
+
     raise ValueError(f"Unsupported backend: {backend_name!r}")
 
 
