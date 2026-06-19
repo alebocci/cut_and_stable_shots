@@ -279,7 +279,7 @@ run_one() {
   fi
 
   if [[ -x /usr/bin/time ]]; then
-    /usr/bin/time -v python main_new_new.py \
+    /usr/bin/time -v python main.py \
       --circuits-pkl "only_cliffordt/clif${q}.pkl" \
       --shots "$shots" \
       --noisy-backend "$backend" \
@@ -289,7 +289,7 @@ run_one() {
       --parallel-circuits 1 \
       --output-dir "$out_dir"
   else
-    python main_new_new.py \
+    python main.py \
       --circuits-pkl "only_cliffordt/clif${q}.pkl" \
       --shots "$shots" \
       --noisy-backend "$backend" \

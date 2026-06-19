@@ -133,6 +133,12 @@ logger = logging.getLogger("cuttable-circuit-benchmark")
 
 FreqCounts = Dict[str, int]
 
+AER_SINGLE_THREAD_OPTIONS = {
+    "max_parallel_threads": 1,       # OpenMP CPU threads used by Aer
+    "max_parallel_experiments": 1,   # no parallel circuit/experiment execution
+    "max_parallel_shots": 1,         # no parallel shot execution
+}
+
 
 @dataclass
 class CircuitSpec:
@@ -154,6 +160,43 @@ class CircuitSpec:
 def hash_circuit(qasm: str) -> str:
     return hashlib.md5(qasm.encode()).hexdigest()
 
+def derive_seed(base_seed: Optional[int], *parts: Any) -> Optional[int]:
+    """Derive a deterministic 32-bit simulator seed from a base seed.
+
+    This avoids reusing the exact same Aer simulator seed across repeated
+    batch executions of the same fragment/observable.
+
+    Why this matters:
+        run_counts(..., shots=938, seed=42)
+
+    is not equivalent to:
+
+        run_counts(..., shots=50, seed=42)
+        run_counts(..., shots=50, seed=42)
+        ...
+        run_counts(..., shots=38, seed=42)
+
+    because the second form repeatedly restarts the simulator RNG from the
+    same seed. Incremental execution therefore needs a unique seed per batch.
+
+    If base_seed is None, we return None and let Aer choose its own randomness.
+    """
+    if base_seed is None:
+        return None
+
+    payload = json.dumps(
+        {
+            "base_seed": int(base_seed),
+            "parts": [str(p) for p in parts],
+        },
+        sort_keys=True,
+    ).encode("utf-8")
+
+    digest = hashlib.blake2s(payload, digest_size=4).digest()
+    seed = int.from_bytes(digest, byteorder="big", signed=False)
+
+    # Avoid seed 0 just in case a backend treats it specially.
+    return seed if seed != 0 else 1
 
 @functools.lru_cache(maxsize=None)
 def parse_qasm(qasm: str) -> QuantumCircuit:
@@ -260,10 +303,15 @@ def _resolve_fake_backend(fake_name: str):
 @functools.lru_cache(maxsize=None)
 def make_backend(backend_name: str) -> AerSimulator:
     if backend_name == "aer.perfect":
-        return AerSimulator()
+        return AerSimulator(**AER_SINGLE_THREAD_OPTIONS)
+
     if backend_name.startswith("aer.fake_"):
         fake = _resolve_fake_backend(backend_name[4:])
-        return AerSimulator(noise_model=NoiseModel.from_backend(fake))
+        return AerSimulator(
+            noise_model=NoiseModel.from_backend(fake),
+            **AER_SINGLE_THREAD_OPTIONS,
+        )
+
     raise ValueError(f"Unsupported backend: {backend_name!r}")
 
 
@@ -1335,7 +1383,17 @@ def run_cutting(
                 executed_map[key] = 0
                 continue
 
-            counts = run_counts(fq, obs, backend, unit_shots, seed_simulator)
+            unit_seed = derive_seed(
+                seed_simulator,
+                "cutting",
+                allocation_mode,
+                hash_circuit(fq),
+                idx,
+                obs,
+                unit_shots,
+            )
+
+            counts = run_counts(fq, obs, backend, unit_shots, unit_seed)
             ev = expected_value_from_counts(counts, obs)
             tape_evs.append(ev)
             counts_by_variant[stringify_result_key(fq, obs)] = counts
@@ -1485,8 +1543,24 @@ def run_cutting_incremental(
                 if initial_batch_shots is not None else None
             )
 
-            def runner(*, shots: int, _q=fq, _o=obs):
-                return run_counts(_q, _o, backend, shots, seed_simulator)
+            batch_counter = 0
+
+            def runner(*, shots: int, _q=fq, _o=obs, _idx=idx):
+                nonlocal batch_counter
+                batch_counter += 1
+
+                batch_seed = derive_seed(
+                    seed_simulator,
+                    "cutting_incremental",
+                    allocation_mode,
+                    hash_circuit(_q),
+                    _idx,
+                    _o,
+                    batch_counter,
+                    shots,
+                )
+
+                return run_counts(_q, _o, backend, shots, batch_seed)
 
             executor = IncrementalExecution(
                 stopping_criterion=stopping_criterion,
@@ -1608,6 +1682,7 @@ def run_cutting_incremental(
 def load_pickled_cuttable_circuits(
     circuits_pkl: Path,
     circuit_index: Optional[int] = None,
+    circuit_indices: Optional[List[int]] = None,
 ) -> List[CircuitSpec]:
     with circuits_pkl.open("rb") as fh:
         items = pickle.load(fh)
@@ -1615,27 +1690,35 @@ def load_pickled_cuttable_circuits(
     if not items:
         raise ValueError(f"{circuits_pkl} is empty")
 
+    if circuit_index is not None and circuit_indices is not None:
+        raise ValueError("Use either --circuit-index or --circuit-indices, not both.")
+
     if circuit_index is not None:
-        items = [items[circuit_index]]
+        indexed_items = [(circuit_index, items[circuit_index])]
+    elif circuit_indices is not None:
+        indexed_items = [(idx, items[idx]) for idx in circuit_indices]
+    else:
+        indexed_items = list(enumerate(items))
 
     circuits: List[CircuitSpec] = []
 
-    for i, item in enumerate(items):
+    for original_index, item in indexed_items:
         n_qubits = int(item["n_qubits"])
         ops = item["ops"]
         meas = item["meas"]
 
         if not meas or len(meas) != 1:
             raise ValueError(
-                f"Entry {i} has unsupported measurements: expected exactly one measurement"
+                f"Entry {original_index} has unsupported measurements: "
+                f"expected exactly one measurement"
             )
 
         qasm = pl_ops_to_qasm(ops, n_qubits)
         observable = "Z" + "I" * (n_qubits - 1)
 
         family = item.get("family", "loaded")
-        tag = item.get("tag", f"circ_{i + 1:03d}")
-        name = f"{i}_{tag}"
+        tag = item.get("tag", f"circ_{original_index + 1:03d}")
+        name = f"{original_index}_{tag}"
 
         circuits.append(CircuitSpec(
             id=len(circuits) + 1,
@@ -1645,6 +1728,7 @@ def load_pickled_cuttable_circuits(
             circuit_name=name,
             circuit_conf={
                 "source_pickle": str(circuits_pkl),
+                "pickle_index": original_index,
                 "original_id": item.get("id"),
                 "family": family,
                 "tag": tag,
@@ -1659,8 +1743,8 @@ def load_pickled_cuttable_circuits(
 
     if not circuits:
         raise ValueError("No circuits loaded.")
-    return circuits
 
+    return circuits
 
 # ---------------------------------------------------------------------------
 # CSV / serialisation
@@ -1671,6 +1755,7 @@ _CSV_FIELDNAMES = [
     "circuit_qubits",
     "observable",
     "mode",
+    "budget",
     "backend",
     "perf_exp_val",
     "result",
@@ -1712,6 +1797,7 @@ def summarise_payload(
         "circuit_qubits": circuit_qubits,
         "observable": observable,
         "mode": mode,
+        "budget": shots_requested,
         "backend": backend,
         "perf_exp_val": payload["params"].get("perf_exp_val"),
         "result": value,
@@ -1851,11 +1937,101 @@ def _wait_for_resources(required_ram_gb, max_cpu_load, poll_interval_s=10.0):
         time.sleep(poll_interval_s)
 
 
+def load_incremental_config(config_path: Optional[Path]) -> Dict[str, Any]:
+    """Load incremental defaults from a JSON config file.
+
+    Accepted short keys:
+        batch_shots, initial_batch_shots, threshold, offset, stability_k,
+        stopping_criterion, distance_metric, window_size, ewma_alpha
+
+    Accepted full keys:
+        incremental_batch_shots, incremental_initial_batch_shots,
+        incremental_threshold, incremental_offset, incremental_stability_k,
+        incremental_stopping_criterion, incremental_distance_metric,
+        incremental_window_size, incremental_ewma_alpha
+    """
+    if config_path is None:
+        return {}
+
+    if not config_path.exists():
+        raise FileNotFoundError(f"Incremental config file not found: {config_path}")
+
+    if config_path.suffix.lower() != ".json":
+        raise ValueError(
+            f"Unsupported config format {config_path.suffix!r}. Use a .json file."
+        )
+
+    with config_path.open("r", encoding="utf-8") as fh:
+        raw = json.load(fh)
+
+    if not isinstance(raw, dict):
+        raise ValueError("Incremental config must be a JSON object.")
+
+    if "incremental" in raw:
+        raw = raw["incremental"]
+        if not isinstance(raw, dict):
+            raise ValueError('"incremental" must be a JSON object.')
+
+    aliases = {
+        "batch_shots": "incremental_batch_shots",
+        "initial_batch_shots": "incremental_initial_batch_shots",
+        "threshold": "incremental_threshold",
+        "offset": "incremental_offset",
+        "stability_k": "incremental_stability_k",
+        "stopping_criterion": "incremental_stopping_criterion",
+        "distance_metric": "incremental_distance_metric",
+        "window_size": "incremental_window_size",
+        "ewma_alpha": "incremental_ewma_alpha",
+    }
+
+    converters = {
+        "incremental_batch_shots": int,
+        "incremental_initial_batch_shots": lambda v: None if v is None else int(v),
+        "incremental_threshold": float,
+        "incremental_offset": int,
+        "incremental_stability_k": int,
+        "incremental_stopping_criterion": str,
+        "incremental_distance_metric": str,
+        "incremental_window_size": int,
+        "incremental_ewma_alpha": float,
+    }
+
+    config: Dict[str, Any] = {}
+
+    for key, value in raw.items():
+        normalized_key = str(key).lstrip("-").replace("-", "_")
+        normalized_key = aliases.get(normalized_key, normalized_key)
+
+        if normalized_key not in converters:
+            allowed = sorted(set(converters) | set(aliases))
+            raise ValueError(
+                f"Unknown incremental config key {key!r}. "
+                f"Allowed keys are: {', '.join(allowed)}"
+            )
+
+        config[normalized_key] = converters[normalized_key](value)
+
+    return config
+
+
 def validate_incremental_args(args: argparse.Namespace) -> None:
+    if args.incremental_stopping_criterion not in {"delta", "dma", "ewma"}:
+        raise ValueError(
+            "--incremental-stopping-criterion must be one of: delta, dma, ewma"
+        )
+
+    if args.incremental_distance_metric not in {"tvd", "hellinger", "js"}:
+        raise ValueError(
+            "--incremental-distance-metric must be one of: tvd, hellinger, js"
+        )
+
     if args.incremental_batch_shots <= 0:
         raise ValueError("--incremental-batch-shots must be > 0")
 
-    if args.incremental_initial_batch_shots is not None and args.incremental_initial_batch_shots <= 0:
+    if (
+        args.incremental_initial_batch_shots is not None
+        and args.incremental_initial_batch_shots <= 0
+    ):
         raise ValueError("--incremental-initial-batch-shots must be > 0")
 
     if args.incremental_offset <= 0:
@@ -1864,18 +2040,42 @@ def validate_incremental_args(args: argparse.Namespace) -> None:
     if args.incremental_stability_k <= 0:
         raise ValueError("--incremental-stability-k must be > 0")
 
-    crit = args.incremental_stopping_criterion
-    if crit in {"dma", "ewma"} and args.incremental_window_size <= 0:
-        raise ValueError("--incremental-window-size must be > 0")
+    if args.incremental_stopping_criterion in {"dma", "ewma"}:
+        if args.incremental_window_size <= 0:
+            raise ValueError("--incremental-window-size must be > 0")
 
-    if crit == "ewma":
+    if args.incremental_stopping_criterion == "ewma":
         alpha = args.incremental_ewma_alpha
         if not (0.0 < alpha <= 1.0):
             raise ValueError("--incremental-ewma-alpha must be in (0, 1]")
 
 
 def parse_args() -> argparse.Namespace:
+    pre = argparse.ArgumentParser(add_help=False)
+    pre.add_argument(
+        "--incremental-config",
+        type=Path,
+        default=None,
+        help="JSON file containing defaults for incremental execution parameters.",
+    )
+    pre_args, _ = pre.parse_known_args()
+
+    incremental_defaults = {
+        "incremental_batch_shots": 50,
+        "incremental_initial_batch_shots": None,
+        "incremental_threshold": 0.03,
+        "incremental_offset": 2,
+        "incremental_stability_k": 3,
+        "incremental_stopping_criterion": "delta",
+        "incremental_distance_metric": "tvd",
+        "incremental_window_size": 3,
+        "incremental_ewma_alpha": 0.5,
+    }
+
+    incremental_defaults.update(load_incremental_config(pre_args.incremental_config))
+
     p = argparse.ArgumentParser(
+        parents=[pre],
         description=(
             "Benchmark circuits loaded from valid_circuits.pkl.\n"
             "Cutting uses find_and_place_cuts + CutStrategy(min_free_wires=2).\n"
@@ -1883,45 +2083,83 @@ def parse_args() -> argparse.Namespace:
             "Reconstruction uses qcut_processing_fn (tensor contraction)."
         )
     )
+
     p.add_argument("--circuits-pkl", type=Path, required=True,
                    help="valid_circuits.pkl produced by generate_and_cut.py")
-    p.add_argument("--circuit-index", type=int, default=None)
+
+    p.add_argument(
+        "--circuit-index",
+        type=int,
+        default=None,
+        help="Run a single zero-based circuit index from the pickle.",
+    )
+
+    p.add_argument(
+        "--circuit-indices",
+        type=int,
+        nargs="+",
+        default=None,
+        help="Run multiple zero-based circuit indices, e.g. --circuit-indices 0 3 7.",
+    )
+
     p.add_argument("--shots", type=int, default=8000, help="Total shot budget B.")
     p.add_argument("--noisy-backend", type=str, default="aer.fake_brisbane")
     p.add_argument("--ideal-backend", type=str, default="aer.perfect")
     p.add_argument("--seed-simulator", type=int, default=None)
     p.add_argument("--modes", nargs="+", default=["all"], choices=ALL_MODES + ["all"])
-    p.add_argument("--incremental-batch-shots", type=int, default=50)
-    p.add_argument("--incremental-initial-batch-shots", type=int, default=None)
-    p.add_argument("--incremental-threshold", type=float, default=0.03)
-    p.add_argument("--incremental-offset", type=int, default=2)
-    p.add_argument("--incremental-stability-k", type=int, default=3)
+
+    p.add_argument(
+        "--incremental-batch-shots",
+        type=int,
+        default=incremental_defaults["incremental_batch_shots"],
+    )
+    p.add_argument(
+        "--incremental-initial-batch-shots",
+        type=int,
+        default=incremental_defaults["incremental_initial_batch_shots"],
+    )
+    p.add_argument(
+        "--incremental-threshold",
+        type=float,
+        default=incremental_defaults["incremental_threshold"],
+    )
+    p.add_argument(
+        "--incremental-offset",
+        type=int,
+        default=incremental_defaults["incremental_offset"],
+    )
+    p.add_argument(
+        "--incremental-stability-k",
+        type=int,
+        default=incremental_defaults["incremental_stability_k"],
+    )
     p.add_argument(
         "--incremental-stopping-criterion",
         type=str,
-        default="delta",
+        default=incremental_defaults["incremental_stopping_criterion"],
         choices=["delta", "dma", "ewma"],
         help="Stopping criterion for incremental execution.",
     )
     p.add_argument(
         "--incremental-distance-metric",
         type=str,
-        default="tvd",
+        default=incremental_defaults["incremental_distance_metric"],
         choices=["tvd", "hellinger", "js"],
         help="Distance metric used by the stopping criterion.",
     )
     p.add_argument(
         "--incremental-window-size",
         type=int,
-        default=3,
+        default=incremental_defaults["incremental_window_size"],
         help="Window size w for dma/ewma stopping criteria.",
     )
     p.add_argument(
         "--incremental-ewma-alpha",
         type=float,
-        default=0.5,
+        default=incremental_defaults["incremental_ewma_alpha"],
         help="EWMA smoothing factor alpha in (0,1]; only used for ewma.",
     )
+
     p.add_argument("--gate2q-alpha", type=float, default=0.8)
     p.add_argument("--output-dir", type=Path, default=Path("benchmark_results"))
     p.add_argument("--mode-time-limit", type=float, default=None, metavar="SECONDS")
@@ -1930,10 +2168,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--min-free-ram-gb", type=float, default=None)
     p.add_argument("--max-cpu-load", type=float, default=2.0)
     p.add_argument("--verbose", action="store_true")
+
     args = p.parse_args()
     validate_incremental_args(args)
     return args
-
 
 def resolve_modes(requested: Sequence[str]) -> List[str]:
     if not requested or "all" in requested:
@@ -2381,7 +2619,11 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO if args.verbose else logging.WARNING)
 
     selected_modes = resolve_modes(args.modes)
-    circuits = load_pickled_cuttable_circuits(args.circuits_pkl, args.circuit_index)
+    circuits = load_pickled_cuttable_circuits(
+        args.circuits_pkl,
+        circuit_index=args.circuit_index,
+        circuit_indices=args.circuit_indices,
+    )
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     parallel = max(1, args.parallel_circuits)
