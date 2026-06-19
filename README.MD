@@ -1,4 +1,4 @@
-# cut_and_stable_shots
+# Cutting and StableShot benchmarking
 
 This repository contains experimental code for generating cuttable quantum circuits and benchmarking different execution strategies for noisy quantum simulation.
 
