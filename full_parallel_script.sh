@@ -44,9 +44,9 @@ RESOURCE_LOG_INTERVAL=120       # seconds between "waiting" messages
 OOM_SCORE_ADJ=800
 
 SEED=42
-CONFIG="configs/ewma_tvd_002.json"
+CONFIG="configs/stable_shots3.json"
 
-ROOT_OUT="results/new/ewma_tvd_002"
+ROOT_OUT="results/new/stable_shots3"
 
 mkdir -p logs
 
@@ -284,7 +284,7 @@ run_one() {
       --shots "$shots" \
       --noisy-backend "$backend" \
       --seed-simulator "$SEED" \
-      --modes cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
+      --modes noisy_vanilla cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
       --incremental-config "$CONFIG" \
       --parallel-circuits 1 \
       --output-dir "$out_dir"
@@ -294,7 +294,7 @@ run_one() {
       --shots "$shots" \
       --noisy-backend "$backend" \
       --seed-simulator "$SEED" \
-      --modes cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
+      --modes noisy_vanilla cut_divided_budget cut_qubit_prop cut_incremental_budget cut_incremental_qubit_prop \
       --incremental-config "$CONFIG" \
       --parallel-circuits 1 \
       --output-dir "$out_dir"
