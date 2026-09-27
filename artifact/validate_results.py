@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import math
 import statistics
 import sys
@@ -14,6 +15,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATASET = ROOT / "analysis" / "data" / "paper_results.csv"
+PAPER_CONFIG = ROOT / "configs" / "stable_shots3.json"
+EXPECTED_CONFIG = {
+    "stopping_criterion": "delta",
+    "distance_metric": "tvd",
+    "threshold": 0.05,
+    "offset": 3,
+    "stability_k": 5,
+    "batch_shots": 50,
+}
 
 MODES = (
     "noisy_vanilla",
@@ -53,6 +63,7 @@ def load_rows(path: Path) -> list[dict[str, object]]:
     required = {
         "circuit_name",
         "circuit_qubits",
+        "observable",
         "mode",
         "budget",
         "backend",
@@ -104,6 +115,8 @@ def validate(rows: list[dict[str, object]]) -> dict[str, object]:
         (int(row["circuit_qubits"]), str(row["circuit_name"])) for row in rows
     }
     require(len(unique_circuits) == 70, f"expected 70 circuits, found {len(unique_circuits)}")
+    circuits_by_size = Counter(int(row["circuit_qubits"]) for row in rows if str(row["mode"]) == MODES[0] and int(row["budget"]) == BUDGETS[0] and str(row["backend"]) == BACKENDS[0])
+    require(all(circuits_by_size[q] == 10 for q in QUBITS), f"expected 10 circuits per qubit size: {circuits_by_size}")
 
     keys = [
         (
@@ -116,6 +129,11 @@ def validate(rows: list[dict[str, object]]) -> dict[str, object]:
         for row in rows
     ]
     require(len(set(keys)) == len(keys), "duplicate circuit/backend/budget/mode rows found")
+
+    observations_per_circuit = Counter(
+        (int(row["circuit_qubits"]), str(row["circuit_name"])) for row in rows
+    )
+    require(all(count == 60 for count in observations_per_circuit.values()), "each circuit must have 4 backends x 3 budgets x 5 modes")
 
     cells = Counter(
         (int(row["circuit_qubits"]), str(row["backend"]), int(row["budget"]))
@@ -131,6 +149,8 @@ def validate(rows: list[dict[str, object]]) -> dict[str, object]:
         require(0 < shots <= budget, f"invalid shot count for {mode}: {shots}/{budget}")
         if mode in {"noisy_vanilla", "cut_divided_budget", "cut_qubit_prop"}:
             require(shots == budget, f"fixed-budget mode did not consume its budget: {mode}")
+        expected_observable = "Z" + "I" * (int(row["circuit_qubits"]) - 1)
+        require(str(row["observable"]) == expected_observable, f"unexpected observable for {row['circuit_name']}")
 
     by_mode: dict[str, list[dict[str, object]]] = defaultdict(list)
     for row in rows:
@@ -238,12 +258,16 @@ def main() -> int:
     args = parser.parse_args()
     path = args.dataset.resolve()
     try:
+        config = json.loads(PAPER_CONFIG.read_text(encoding="utf-8"))
+        require(config == EXPECTED_CONFIG, f"paper configuration differs from {EXPECTED_CONFIG}")
         rows = load_rows(path)
         report = validate(rows)
     except (OSError, ValueError, AssertionError) as exc:
         print(f"StableShots ICSoC 2026 artifact validation: FAIL\n{exc}", file=sys.stderr)
         return 1
     print_report(path, report)
+    print(f"Configuration: {PAPER_CONFIG} (delta/TVD, batch 50, offset 3, threshold 0.05, k=5)")
+    print("Seed and runner evidence: 42 (recorded in per-cell run.log files)")
     return 0
 
 

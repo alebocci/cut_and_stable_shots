@@ -75,9 +75,25 @@ def main() -> int:
         parser.error("--jobs must be at least 1")
     if any(qubits not in range(10, 17) for qubits in args.qubits):
         parser.error("paper circuits use 10 through 16 qubits")
+    if any(budget <= 0 for budget in args.budgets):
+        parser.error("all shot budgets must be positive")
+
+    runner = ROOT / "src" / "main.py"
+    config = ROOT / "configs" / "stable_shots3.json"
+    if not runner.is_file() or not config.is_file():
+        parser.error("required runner or paper configuration is missing")
+    missing_inputs = [
+        ROOT / "data" / "circuits" / "paper" / f"clif{qubits}.pkl"
+        for qubits in args.qubits
+        if not (ROOT / "data" / "circuits" / "paper" / f"clif{qubits}.pkl").is_file()
+    ]
+    if missing_inputs:
+        parser.error(f"missing circuit input: {missing_inputs[0]}")
+
+    output_root = args.output_root if args.output_root.is_absolute() else ROOT / args.output_root
 
     jobs = [
-        command_for(qubits, budget, backend, args.output_root.resolve())
+        command_for(qubits, budget, backend, output_root.resolve())
         for budget in args.budgets
         for backend in args.backends
         for qubits in args.qubits

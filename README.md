@@ -23,6 +23,18 @@ Circuit request + maximum budget
 
 StableShots is the controller between cutting and sewing. It does not change the cut-selection or reconstruction procedures and is not presented as a complete Service-Oriented Quantum platform. The included service façade expresses one invocation declaratively and delegates to the preserved experiment runner.
 
+## ICSoC 2026 Artifact Evaluation
+
+Reviewers can evaluate the artifact without a quantum computer, IBM Quantum account, API key, or paid service. All executions use local Qiskit Aer fake backends. The recommended route is:
+
+1. `python3 artifact/validate_results.py` — Level A, archived-result verification (seconds; Python standard library only).
+2. `python3 artifact/invoke_service.py --request artifact/requests/smoke.json --dry-run` — inspect the service contract and delegated command.
+3. Build the container with `docker build -t stableshots-icsoc26 .` or install `requirements.txt` in a local Python 3.11 virtual environment.
+4. Run the same invocation without `--dry-run` — Level B, one end-to-end matched CC-Sub/SS-Sub execution (minutes; CPU-dependent).
+5. Inspect `summary.csv`, `run.log`, and the per-mode JSON responses under `reproduced/smoke/`. The runner also emits the auxiliary VAN baseline used for distance comparisons.
+
+Level A plus Level B is the intended reviewer workflow. Level C (`python3 artifact/run_campaign.py --jobs 1`) recomputes all 84 campaign cells and can take multiple days; use it only when sufficient CPU time and memory are available. Full commands, expected evidence, checksums, and troubleshooting are in [artifact/README.md](artifact/README.md), with measurements from the release host in [artifact/VALIDATION.md](artifact/VALIDATION.md).
+
 ## What can be reproduced
 
 The paper evaluates 70 seeded synthetic Clifford+T circuits (10 circuits for each size from 10 to 16 qubits), four Qiskit fake backends, three maximum budgets, and five modes: 4,200 circuit–backend–budget–mode observations. The primary claims are:
@@ -69,7 +81,7 @@ The smoke request compares `cut_divided_budget` (CC-Sub) with `cut_incremental_b
 
 Inspect:
 
-- `reproduced/smoke/summary.csv` for error and shot counts;
+- `reproduced/smoke/summary.csv` for error and shot counts (the requested pair plus its auxiliary VAN baseline);
 - `reproduced/smoke/run.log` for the complete configuration and status;
 - `reproduced/smoke/10q/.../*.json` for per-mode parameters, timings, fragment structure, and per-variant allocations.
 
@@ -150,7 +162,7 @@ The paper configuration is `configs/stable_shots3.json`: batch size 50, lookback
 | `docs/legacy/README.original.MD` | Unmodified pre-artifact README |
 | `docs/legacy/gitignore.original` | Unmodified pre-artifact ignore rules |
 
-All pre-existing files were moved without content edits. New wrappers point to the reorganized locations.
+Research inputs and recorded results are retained as evidence. Artifact-facing wrappers and documentation provide portable entry points without changing the evaluated method or numerical result files.
 
 ## Recreate figures interactively
 
@@ -172,7 +184,7 @@ Per-circuit JSON files retain the OpenQASM circuit, parameters, backend, timings
 
 ## Integrity, licensing, and publication
 
-Use `MANIFEST.sha256` to check the core submission materials with `sha256sum -c MANIFEST.sha256`. The artifact is distributed under the [MIT License](LICENSE), matching the StableShots repository.
+Use `python3 artifact/generate_manifest.py --check` (or `sha256sum -c MANIFEST.sha256`) to verify the frozen repository contents. Software is distributed under the [MIT License](LICENSE), matching the StableShots repository. Author-generated datasets and result evidence are licensed under CC BY 4.0; publication-controlled material and third-party components retain their applicable terms. See [LICENSES.md](LICENSES.md) for the path-by-path mapping.
 
 The ICSoC 2026 artifact call requests a persistent public repository (Zenodo recommended), clear execution and interpretation instructions, setup and data provenance, licensing, and disclosure of special resources. It encourages a container and permits a simplified verification route when full reproduction is expensive. See the [official Call for Artifacts](https://icsoc2026.it.p.lodz.pl/call-artifacts.html) and `docs/ARTIFACT-PAPER-HANDOFF.md`.
 

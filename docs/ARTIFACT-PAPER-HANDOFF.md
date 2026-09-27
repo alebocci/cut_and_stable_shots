@@ -21,7 +21,7 @@ This file is a factual brief for drafting the required six-page artifact paper w
 - Corresponding email: `alessandro.bocci@unipi.it`.
 - Main replication repository named in the accepted paper: <https://github.com/alebocci/cut_and_stable_shots>.
 - Persistent artifact DOI: **[TODO: create a versioned Zenodo release and insert DOI]**.
-- Artifact license: **MIT**, matching <https://github.com/GBisi/stableshots>.
+- Licensing: software is **MIT**, matching <https://github.com/GBisi/stableshots>; author-generated datasets and result evidence are **CC BY 4.0**. Published-paper material remains subject to its publication agreement. See `LICENSES.md`.
 
 ## One-paragraph artifact characterization
 
@@ -29,7 +29,7 @@ The artifact packages the implementation, inputs, raw outputs, aggregate data, f
 
 ## Artifact badges/characteristics to request
 
-- **Open Artifacts** after the MIT-licensed repository is deposited in a public immutable archive.
+- **Open Artifacts** after the split-licensed repository is deposited in a public immutable archive.
 - **Verified Artifacts** based on the standard-library archived-results validator, the executable smoke invocation, full raw evidence, and optional complete campaign path.
 - Available: all source, generated circuits, configurations, results, logs, aggregate CSV, analysis notebook, plots, accepted paper, Dockerfile, and checksums.
 - Reusable: declarative invocation, configurable controller, safe parameterized campaign runner, and local fake backends with no cloud credentials.
@@ -72,11 +72,11 @@ Do not phrase “close” as statistical equivalence or universal accuracy prese
 
 Command: `python3 artifact/validate_results.py`.
 
-Dependencies: Python 3 standard library only. Expected time: seconds. This validates coverage, row uniqueness, budget invariants, and recomputes the principal descriptive claims.
+Dependencies: Python 3 standard library only. Expected time: seconds. This validates coverage, row uniqueness, budget invariants, and recomputes the principal descriptive claims. On the release host it completed in 0.15 seconds.
 
 ### Level B — basic executability and integrity
 
-Install `requirements.txt` or build the Docker image. Run the JSON smoke request with `artifact/invoke_service.py`. It selects one 10-qubit circuit, one fake backend, one 5,000-shot budget, and a matched fixed/adaptive policy pair. Expected time: minutes, highly CPU-dependent. The end-to-end check in the preparation environment completed the fixed mode in 88.2 seconds and the adaptive mode in 319.5 seconds (about 6.9 minutes total excluding setup); record the final clean-host specification before quoting this in the paper. Evidence appears in `reproduced/smoke/`.
+Install `requirements.txt` or build the Docker image. Run the JSON smoke request with `artifact/invoke_service.py`. It selects one 10-qubit circuit, one fake backend, one 5,000-shot budget, and a matched fixed/adaptive policy pair; the runner also emits an auxiliary VAN baseline. Expected time: minutes, highly CPU-dependent. On the documented release host, the final container run completed CC-Sub in 114.67 seconds and SS-Sub in 417.84 seconds, with 9 minutes 10.58 seconds total wall time including the VAN baseline and orchestration. Evidence appears in `reproduced/smoke/`; exact host details are in `artifact/VALIDATION.md`.
 
 ### Level C — complete recomputation
 
@@ -136,4 +136,4 @@ Adjust for LNCS references and figure space while keeping the final PDF exactly 
 
 ## Prompt seed for the paper-writing model
 
-> Draft an exactly six-page Springer LNCS artifact paper titled “Artifact for 'Adaptive Shot Management for Quantum Circuit-Cutting Services'”. Use only facts in this handoff and the repository README; do not invent a DOI, runtime, hardware measurement, or result. State that the artifact uses the MIT License. Present the artifact as a modular adaptive execution-control layer between cut and sew, not as a complete SOQ platform. Include a compact architecture figure, an artifact inventory table, three reproduction levels, exact commands, expected evidence, data provenance, limitations, and availability/licensing. Preserve the matched comparisons SS-Sub/CC-Sub and SS-Qub/CC-Qub. State that local subcircuit stability does not guarantee complete post-sewing distribution stability and that the evaluation reports one observable, not the full distribution. Mark unresolved fields visibly as TODO.
+> Draft an exactly six-page Springer LNCS artifact paper titled “Artifact for 'Adaptive Shot Management for Quantum Circuit-Cutting Services'”. Use only facts in this handoff, `artifact/VALIDATION.md`, and the repository README; do not invent a DOI, runtime, hardware measurement, or result. State the split licensing exactly as mapped in `LICENSES.md`: MIT for software, CC BY 4.0 for author-generated data and results, publication-agreement terms for paper-controlled material, and original terms for third-party content. Present the artifact as a modular adaptive execution-control layer between cut and sew, not as a complete SOQ platform. Include a compact architecture figure, an artifact inventory table, three reproduction levels, exact commands, expected evidence, data provenance, limitations, and availability/licensing. Preserve the matched comparisons SS-Sub/CC-Sub and SS-Qub/CC-Qub. State that local subcircuit stability does not guarantee complete post-sewing distribution stability and that the evaluation reports one observable, not the full distribution. Mark unresolved fields visibly as TODO.

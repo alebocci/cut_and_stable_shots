@@ -8,11 +8,12 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /artifact
 
 COPY requirements.txt environment/requirements-lock.txt /artifact/
-RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel \
+RUN python -m pip install --no-cache-dir --upgrade pip wheel \
     && python -m pip install --no-cache-dir -r requirements-lock.txt
 
 COPY src /artifact/src
-COPY artifact /artifact/artifact
+COPY artifact/invoke_service.py artifact/validate_results.py artifact/run_campaign.py /artifact/artifact/
+COPY artifact/requests /artifact/artifact/requests
 COPY configs /artifact/configs
 COPY data/circuits/paper /artifact/data/circuits/paper
 COPY analysis/data/paper_results.csv /artifact/analysis/data/paper_results.csv
