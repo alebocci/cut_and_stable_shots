@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import re
 import subprocess
 import sys
@@ -18,17 +19,34 @@ LINE = re.compile(r"^([0-9a-f]{64})  (.+)$")
 
 
 def release_files() -> list[Path]:
-    completed = subprocess.run(
-        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
-        cwd=ROOT,
-        check=True,
-        stdout=subprocess.PIPE,
-    )
+    """Use Git when available; scan files in a standalone Zenodo extraction."""
+    try:
+        top = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=ROOT, check=True, stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL, text=True,
+        ).stdout.strip()
+        if Path(top).resolve() != ROOT.resolve():
+            raise ValueError("not the root of this Git checkout")
+        completed = subprocess.run(
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+            cwd=ROOT, check=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+        )
+        candidates = [
+            Path(raw.decode("utf-8"))
+            for raw in completed.stdout.split(b"\0") if raw
+        ]
+    except (OSError, subprocess.CalledProcessError, ValueError):
+        candidates = []
+        for directory, subdirs, files in os.walk(ROOT):
+            subdirs[:] = sorted(d for d in subdirs if d not in EXCLUDED_PARTS)
+            for name in files:
+                path = Path(directory) / name
+                if path.is_file() and not path.is_symlink():
+                    candidates.append(path.relative_to(ROOT))
+
     paths = []
-    for raw in completed.stdout.split(b"\0"):
-        if not raw:
-            continue
-        relative = Path(raw.decode("utf-8"))
+    for relative in candidates:
         if relative == MANIFEST.relative_to(ROOT):
             continue
         if any(part in EXCLUDED_PARTS for part in relative.parts):
@@ -70,6 +88,10 @@ def check_manifest() -> int:
         match = LINE.fullmatch(line)
         if not match:
             print(f"Manifest verification: FAIL (invalid line {number})", file=sys.stderr)
+            return 1
+        relative = Path(match.group(2))
+        if relative.is_absolute() or ".." in relative.parts:
+            print(f"Manifest verification: FAIL (unsafe path at line {number})", file=sys.stderr)
             return 1
         expected.append((match.group(1), match.group(2)))
     actual = entries()

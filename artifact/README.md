@@ -73,7 +73,7 @@ The command should print `Cut -> Allocate -> StableShots batch/check/stop -> Exe
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
+python -m pip install --upgrade pip wheel
 python -m pip install -r requirements.txt
 python artifact/invoke_service.py --request artifact/requests/smoke.json
 ```
@@ -104,7 +104,31 @@ Inspect the response directory:
 - `reproduced/smoke/run.log`: effective configuration and execution status;
 - nested per-mode JSON files: parameters, timing, fragment/variant structure, reconstructed result, and shot accounting.
 
-The response validator requires CC-Sub, SS-Sub, and the auxiliary VAN row, and checks every row's shot accounting. The adaptive mode must not exceed its 5,000-shot ceiling. It need not stop early for every circuit; successful execution means the request completes and its evidence is internally consistent. Measured release-host runtimes and checks are recorded in `artifact/VALIDATION.md`.
+The response validator requires CC-Sub, SS-Sub, and the auxiliary VAN row, checks shot accounting (including saved shots), and rejects non-finite results or absolute errors. The adaptive mode must not exceed its 5,000-shot ceiling. It need not stop early for every circuit; successful execution means the request completes and its evidence is internally consistent. Measured release-host runtimes and checks are recorded in `artifact/VALIDATION.md`.
+
+### Comparing Level B numerical outputs
+
+Level B is an executability and resource-accounting check, not an exact historical numerical-reproduction gate. Two repeated executions with the same smoke request and environment (29 October 2026) produced identical `result`, `absolute_error`, shot counts, and per-variant measurement counts. Nevertheless, those values differ substantially from the archived June 2026 campaign for the same documented circuit, backend, budget, modes, and seed. The original execution environment is unavailable, so the reason cannot be established retrospectively. Do not treat this as a rounding-only discrepancy or assert an unverified tolerance across environments.
+
+For an explicit diagnostic comparison of two fresh runs, save the response directories separately and run (from the repository root):
+
+```bash
+python3 artifact/compare_smoke.py \
+  --reference reproduced/smoke-repeat-1/summary.csv \
+  --observed reproduced/smoke-repeat-2/summary.csv --atol 0
+```
+
+`--atol 0` tests *exact equality* for repeated runs in the same environment; it passed for the two supplied runs but is not a guarantee for other environments. If a run differs by a few decimal places, omit `--atol` to inspect the deltas without interpreting them as a failed executability check. The comparator also verifies exact shot-count agreement when `--atol` is supplied.
+
+To compare a fresh run with the original campaign (which includes additional circuits and modes):
+
+```bash
+python3 artifact/compare_smoke.py \
+  --reference results/new/stable_shots3/5000_shots/torino/10_qubits/summary.csv \
+  --observed reproduced/smoke/summary.csv
+```
+
+The command matches circuit, backend, budget, and mode, then prints absolute deltas for `result` and `absolute_error` and the executed-shot difference. Without `--atol`, it is a **diagnostic**, not a PASS/FAIL threshold for numerical agreement. Level A remains the validation route for the aggregate numerical claims of the paper. See `artifact/VALIDATION.md` for the recorded differences.
 
 ## Level C — complete recomputation
 
@@ -146,7 +170,7 @@ Verify that every intended release file matches the frozen manifest:
 python3 artifact/generate_manifest.py --check
 ```
 
-Equivalent GNU command:
+The Python checker works both in a Git checkout and in an extracted Zenodo ZIP without Git metadata. The GNU checksum command is also available:
 
 ```bash
 sha256sum -c MANIFEST.sha256

@@ -60,3 +60,19 @@ The adaptive policy legitimately used its full cap in this individual smoke run.
 ## Preparation issue caught by the gates
 
 An initial image upgraded setuptools beyond the declared `<81` compatibility constraint, causing the preserved Qiskit provider dependency to fail when importing `pkg_resources`. The Dockerfile was corrected to install the lock without upgrading setuptools independently, and `setuptools==80.9.0` was added to the exact lock. The service façade was also hardened to return nonzero when the runner produces an incomplete response. The final image, validation, and smoke measurements above are from the corrected configuration.
+
+## Camera-ready numerical-repeatability check (29 October 2026)
+
+Two fresh executions of the Level B smoke request were supplied for comparison. Each used circuit `0_Clifford+T_001`, backend `aer.fake_torino`, seed 42, and a 5,000-shot maximum. The same numerical values and per-variant measurement counts were observed in both executions; only timing metadata changed.
+
+| Mode | Fresh result (both runs) | Fresh absolute error (both runs) | Executed shots | Archived June 2026 absolute error |
+|---|---:|---:|---:|---:|
+| VAN | -0.866400 | 0.133600 | 5,000 | 0.331200 |
+| CC-Sub | -0.9883928608818366 | 0.01160713911816269 | 5,000 | 0.2738450441169692 |
+| SS-Sub | -0.9257329447187358 | 0.07426705528126354 | 5,000 | 0.32801186782078473 |
+
+The historical values are from `results/new/stable_shots3/5000_shots/torino/10_qubits/summary.csv`. Fresh runs are numerically repeatable within the tested environment, but their results are not identical to the historical campaign. These differences exceed fifth/sixth-decimal rounding. The original campaign software environment is not available, and no specific cause for the discrepancy has been verified.
+
+Run `artifact/compare_smoke.py` with `--reference` and `--observed` to report matched numeric and shot differences. With no `--atol`, the comparison is diagnostic only. `--atol 0` passed on the two fresh runs in the tested environment; no cross-environment numerical tolerance is established. Level A validates the archived campaign's reported descriptive results; Level B validates execution, response completeness, finite numeric outputs, and shot accounting.
+
+**Release status:** This section records an additional author-supplied validation after the frozen 27 September release. It does not replace that release's measurements or imply that the complete Level C campaign was rerun.
