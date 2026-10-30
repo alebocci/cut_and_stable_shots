@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import shlex
 import subprocess
 import sys
@@ -106,6 +107,13 @@ def validate_response(output: Path, modes: list[str], budget: int) -> None:
         requested = int(float(str(row["shots_requested"])))
         if requested != budget or not 0 < shots <= budget:
             raise RuntimeError(f"invalid shot accounting for {row['mode']}: {shots}/{requested}")
+        saved = int(float(str(row["shots_saved"])))
+        if saved != requested - shots:
+            raise RuntimeError(f"inconsistent saved-shot accounting for {row['mode']}")
+        for column in ("result", "absolute_error"):
+            value = float(str(row[column]))
+            if not math.isfinite(value):
+                raise RuntimeError(f"non-finite {column} for {row['mode']}")
 
 
 def main() -> int:
